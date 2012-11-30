@@ -8,6 +8,7 @@
 	      vm_config/0,
 	      vm_type/0,
 	      chunter_message/0,
+	      vm_state/0,
 	      uuid/0]).
 
 
@@ -45,4 +46,4 @@
 	 Config::config()} |
 	{machine, delete, UUID::uuid()}.
 
--type vm_states() :: binary().
+-type vm_state() :: binary().
