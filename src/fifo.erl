@@ -7,6 +7,7 @@
 	      dataset/0,
 	      vm_config/0,
 	      vm_type/0,
+	      chunter_message/0,
 	      uuid/0]).
 
 
@@ -31,3 +32,17 @@
 
 -type vm_type() :: kvm | zone.
 
+-type chunter_message() ::
+	ping |
+	{machine, start, UUID::uuid()} |
+	{machine, start, UUID::uuid(), Image::binary()} |
+	{machine, stop, UUID::uuid()} |
+	{machine, reboot, UUID::uuid()} |
+	{machines, create,
+	 UUID::uuid(),
+	 PSpec::package(),
+	 DSpec::dataset(),
+	 Config::config()} |
+	{machine, delete, UUID::uuid()}.
+
+-type vm_states() :: binary().
