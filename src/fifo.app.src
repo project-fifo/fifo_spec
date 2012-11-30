@@ -1,4 +1,4 @@
-{application, fifo,
+{application, fifo_spec,
  [
   {description, "Chunter interface library."},
   {vsn, "0.1.0"},
