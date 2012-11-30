@@ -79,16 +79,16 @@
 
 -type chunter_message() ::
 	ping |
-	{machine, start, UUID::uuid()} |
-	{machine, start, UUID::uuid(), Image::binary()} |
-	{machine, stop, UUID::uuid()} |
-	{machine, reboot, UUID::uuid()} |
+	{machines, start, UUID::uuid()} |
+	{machines, start, UUID::uuid(), Image::binary()} |
+	{machines, stop, UUID::uuid()} |
+	{machines, reboot, UUID::uuid()} |
 	{machines, create,
 	 UUID::uuid(),
 	 PSpec::package(),
 	 DSpec::dataset(),
 	 Config::config()} |
-	{machine, delete, UUID::uuid()}.
+	{machines, delete, UUID::uuid()}.
 
 -type vm_state_atom() ::
 	booting |
