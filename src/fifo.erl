@@ -21,7 +21,8 @@
 	      permission_comparer/0]).
 
 -export_type([sniffle_message/0,
-	      chunter_message/0]).
+	      chunter_message/0,
+	      smarl_message/0]).
 
 -type permission() ::
 	[binary() | '_' | '...'].
@@ -175,3 +176,31 @@
 	sniffle_dataset_message() |
 	sniffle_iprange_message() |
 	sniffle_package_message().
+
+
+-type smarl_message() ::
+	{user, list} |
+	{user, get,
+	 User::{token, Token::uuid()} | binary()} |
+	{user, cache,
+	 User::{token, Token::uuid()} | binary()} |
+	{user, add, User::binary()} |
+	{user, auth, User::binary(), Pass::binary()} |
+	{user, allowed, {token, Token::binary()}, Permission::permission()} |
+	{user, allowed, User::binary(), Permission::permission()} |
+	{user, delete, User::binary()} |
+	{user, passwd, User::binary(), Pass::binary()} |
+	{user, join, User::binary(), Group::binary()} |
+	{user, leave, User::binary(), Group::binary()} |
+	{user, grant, User::binary(), Permission::permission()} |
+	{user, revoke, User::binary(), Permission::permission()} |
+	{user, set_resource, User::binary(), Resource::binary(), Value::value()} |
+	{user, claim_resource, User::binary(), Resource::binary(), Ammount::number()} |
+	{user, free_resource, User::binary(), Resource::binary(), ID::uuid()} |
+	{user, resource_stat, User::binary()} |
+	{group, list} |
+	{group, get, Group::binary()} |
+	{group, add, Group::binary()} |
+	{group, delete, Group::binary()} |
+	{group, grant, Group::binary(), Permission::permission()} |
+	{group, revoke, Group::binary(), Permission::permission()}.
