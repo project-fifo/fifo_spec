@@ -9,6 +9,8 @@
 	      vm_type/0,
 	      vm_state/0,
 	      vm_state_atom/0,
+	      value/0,
+	      matcher/0,
 	      uuid/0]).
 
 -export_type([permission/0,
