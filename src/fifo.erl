@@ -9,6 +9,7 @@
 	      vm_type/0,
 	      chunter_message/0,
 	      vm_state/0,
+	      vm_state_atom/0,
 	      uuid/0]).
 
 
@@ -46,4 +47,13 @@
 	 Config::config()} |
 	{machine, delete, UUID::uuid()}.
 
--type vm_state() :: binary().
+-type vm_state_atom() ::
+	booting |
+	shutting_down |
+	running |
+	stopped.
+
+-type vm_state() ::
+	booting |
+	shutting_down |
+	binary().
