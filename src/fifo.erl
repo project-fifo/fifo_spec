@@ -16,7 +16,8 @@
 
 -export_type([user/0,
 	      group_id/0,
-	      user_id/0
+	      user_id/0,
+	      group/0
 	      ]).
 
 -export_type([resource_id/0,
@@ -42,8 +43,15 @@
 -type resource_id() :: binary().
 
 
+
+-type group() ::
+	{group,
+	 Name :: group_id(),
+	 Permissions :: [permission()],
+	 Users :: [user_id()]}.
 -type user() ::
-	{Name :: user_id(),
+	{user,
+	 Name :: user_id(),
 	 Passwd :: binary(),
 	 Permissions :: [permission()],
 	 Resources :: [resource()],
