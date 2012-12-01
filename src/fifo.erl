@@ -24,6 +24,8 @@
 	      chunter_message/0,
 	      smarl_message/0]).
 
+-export_type([hypervisor/0]).
+
 -type permission() ::
 	[binary() | '_' | '...'].
 
