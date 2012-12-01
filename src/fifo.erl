@@ -13,6 +13,17 @@
 	      matcher/0,
 	      uuid/0]).
 
+
+-export_type([user/0,
+	      group_id/0,
+	      user_id/0
+	      ]).
+
+-export_type([resource_id/0,
+	      reservation/0,
+	      resource/0,
+	      resource_claim/0]).
+
 -export_type([permission/0,
 	      comparer/0,
 	      number_comparer/0,
@@ -25,6 +36,33 @@
 	      smarl_message/0]).
 
 -export_type([hypervisor/0]).
+
+-type user_id() :: binary().
+-type group_id() :: binary().
+-type resource_id() :: binary().
+
+
+-type user() ::
+	{Name :: user_id(),
+	 Passwd :: binary(),
+	 Permissions :: [permission()],
+	 Resources :: [resource()],
+	 Groups :: [group_id()]}.
+
+
+-type resource() ::
+	{Name :: resource_id(),
+	 Granted :: number(),
+	 Claims :: [resource_claim()],
+	 Reservations :: [reservation()]}.
+
+-type reservation() ::
+	{Claim :: resource_claim(),
+	 Timeout :: integer()}.
+
+-type resource_claim() ::
+	{Id :: uuid(),
+	 Ammount :: number()}.
 
 -type permission() ::
 	[binary() | '_' | '...'].
