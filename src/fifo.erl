@@ -105,7 +105,7 @@
 
 -type sniffle_vm_messages() ::
 	{vm, register, Vm::uuid(), Hypervisor::binary()} |
-	{vm, create, Package::package(), Dataset::dataset(), Config::config()} |
+	{vm, create, Package::binary(), Dataset::binary(), Config::config()} |
 	{vm, unregister, Vm::uuid()} |
 	{vm, get, Vm::uuid()} |
 	{vm, attribute, get, Vm::uuid()} |
