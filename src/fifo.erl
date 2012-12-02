@@ -59,7 +59,8 @@
 
 
 -type resource() ::
-	{Name :: resource_id(),
+	{resource,
+	 Name :: resource_id(),
 	 Granted :: number(),
 	 Claims :: [resource_claim()],
 	 Reservations :: [reservation()]}.
