@@ -222,6 +222,7 @@
 
 -type sniffle_message() ::
 	ping |
+	{cloud, status} | 
 	sniffle_vm_messages() |
 	sniffle_hypervisor_messages() |
 	sniffle_dataset_message() |
