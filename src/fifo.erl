@@ -49,6 +49,7 @@
 	 Name :: group_id(),
 	 Permissions :: [permission()],
 	 Users :: [user_id()]}.
+
 -type user() ::
 	{user,
 	 Name :: user_id(),
