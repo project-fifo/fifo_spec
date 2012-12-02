@@ -69,7 +69,8 @@
 	 Timeout :: integer()}.
 
 -type resource_claim() ::
-	{Id :: uuid(),
+	{resource_claim,
+	 Id :: uuid(),
 	 Ammount :: number()}.
 
 -type permission() ::
@@ -238,8 +239,8 @@
 	{user, allowed, User::binary(), Permission::permission()} |
 	{user, delete, User::binary()} |
 	{user, passwd, User::binary(), Pass::binary()} |
-	{user, join, User::binary(), Group::binary()} |
-	{user, leave, User::binary(), Group::binary()} |
+	{user, join, User::binary(), Group::group_id()} |
+	{user, leave, User::binary(), Group::group_id()} |
 	{user, grant, User::binary(), Permission::permission()} |
 	{user, revoke, User::binary(), Permission::permission()} |
 	{user, set_resource, User::binary(), Resource::binary(), Value::value()} |
@@ -247,8 +248,8 @@
 	{user, free_resource, User::binary(), Resource::binary(), ID::uuid()} |
 	{user, resource_stat, User::binary()} |
 	{group, list} |
-	{group, get, Group::binary()} |
-	{group, add, Group::binary()} |
-	{group, delete, Group::binary()} |
-	{group, grant, Group::binary(), Permission::permission()} |
-	{group, revoke, Group::binary(), Permission::permission()}.
+	{group, get, Group::group_id()} |
+	{group, add, Group::group_id()} |
+	{group, delete, Group::group_id()} |
+	{group, grant, Group::group_id(), Permission::permission()} |
+	{group, revoke, Group::group_id(), Permission::permission()}.
