@@ -174,6 +174,7 @@
         {vm, create, Package::binary(), Dataset::binary(), Config::config()} |
         {vm, unregister, Vm::uuid()} |
         {vm, get, Vm::uuid()} |
+        {vm, log, Vm::uuid(), Log::term()} |
         {vm, attribute, get, Vm::uuid()} |
         {vm, start, Vm::uuid()} |
         {vm, delete, Vm::uuid()} |
