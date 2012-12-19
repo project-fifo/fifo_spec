@@ -37,8 +37,13 @@
               chunter_message/0,
               smarl_message/0]).
 
--export_type([hypervisor/0]).
+-export_type([hypervisor/0,
+              hypervisor_id/0]).
+-export_type([vm/0,
+              vm_id/0]).
 
+-type hypervisor_id() :: binary().
+-type vm_id() :: binary().
 -type user_id() :: binary().
 -type group_id() :: binary().
 -type resource_id() :: binary().
@@ -75,6 +80,15 @@
         {resource_claim,
          Id :: uuid(),
          Ammount :: number()}.
+
+-type vm() ::
+        {vm,
+         UUID :: vm_id(),
+         Alias :: binary(),
+         Hypervisor :: hypervisor_id(),
+         Log :: [log()],
+         Attributes :: dict()
+        }.
 
 -type permission() ::
         [binary() | '_' | '...'].
