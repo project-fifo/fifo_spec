@@ -238,6 +238,7 @@
 
 -type sniffle_message() ::
         ping |
+        version |
         {cloud, status} |
         sniffle_vm_messages() |
         sniffle_hypervisor_messages() |
@@ -247,6 +248,7 @@
 
 
 -type smarl_message() ::
+        version |
         {user, list} |
         {user, get,
          User::{token, Token::uuid()} | binary()} |
