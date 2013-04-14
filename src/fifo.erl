@@ -173,20 +173,51 @@
 -type vm_state() ::
         binary().
 
+%%%===================================================================
+%%%  Sniffle
+%%%===================================================================
+
+
+-type sniffle_message() ::
+        ping |
+        version |
+        {cloud, status} |
+        sniffle_dtrace_message() |
+        sniffle_vm_messages() |
+        sniffle_hypervisor_messages() |
+        sniffle_dataset_message() |
+        sniffle_image_message() |
+        sniffle_iprange_message() |
+        sniffle_package_message().
+
+-type sniffle_dtrace_message() ::
+        {dtrace, add, Name::binary(), Script::binary()} |
+        {dtrace, delete, ID::uuid()} |
+        {dtrace, get, ID::uuid()} |
+        {dtrace, list} |
+        {dtrace, list, Requreiments::[matcher()]} |
+        {dtrace, attribute, set, ID::uuid(), Attribute::binary(), Value::value()} |
+        {dtrace, attribute, set, ID::uuid(), Attributes::config_list()} |
+        {dtrace, run, ID::uuid(), Servers::[hypervisor()]}.
+
 -type sniffle_vm_messages() ::
         {vm, log, Vm::uuid(), Log::term()} |
         {vm, register, Vm::uuid(), Hypervisor::binary()} |
+        {vm, snapshot, Vm::uuid(), Comment::binary()} |
+        {vm, snapshot, delete, Vm::uuid(), UUID::uuid()} |
+        {vm, snapshot, rollback, Vm::uuid(), UUID::uuid()} |
         {vm, create, Package::binary(), Dataset::binary(), Config::config()} |
+        {vm, update, Vm::uuid(), Package::uuid(), Config::config()} |
         {vm, unregister, Vm::uuid()} |
         {vm, get, Vm::uuid()} |
-        {vm, attribute, get, Vm::uuid()} |
         {vm, start, Vm::uuid()} |
         {vm, delete, Vm::uuid()} |
         {vm, stop, Vm::uuid()} |
         {vm, reboot, Vm::uuid()} |
-        {vm, attribute, get, Vm::uuid(), Attribute::binary()} |
-        {vm, attribute, set, Vm::uuid(), Attribute::binary(), Value::value()} |
-        {vm, attribute, set, Vm::uuid(), Attributes::config_list()} |
+        {vm, stop, force, Vm::uuid()} |
+        {vm, reboot, force, Vm::uuid()} |
+        {vm, set, Vm::uuid(), Attribute::binary(), Value::value()} |
+        {vm, set, Vm::uuid(), Attributes::config_list()} |
         {vm, list} |
         {vm, list, Requirements::[matcher()]}.
 
@@ -195,23 +226,27 @@
          Host::inet:ip_address() | inet:hostname(),
          Port::inet:port_number()} |
         {hypervisor, unregister, Hypervisor::hypervisor()} |
-        {hypervisor, resource, get, Hypervisor::hypervisor(), Resource::binary()} |
-        {hypervisor, resource, get, Hypervisor::hypervisor()} |
-        {hypervisor, resource, set, Hypervisor::hypervisor(), Resource::binary(), Value::value()} |
-        {hypervisor, resource, set, Hypervisor::hypervisor(), Resources::config_list()} |
+        {hypervisor, get, Hypervisor::hypervisor()} |
+        {hypervisor, set, Hypervisor::hypervisor(), Resource::binary(), Value::value()} |
+        {hypervisor, set, Hypervisor::hypervisor(), Resources::config_list()} |
         {hypervisor, list} |
         {hypervisor, list, Requirements::[matcher()]}.
-
 
 -type sniffle_dataset_message() ::
         {dataset, create, Dataset::binary()} |
         {dataset, delete, Dataset::binary()} |
-        {dataset, attribute, get, Dataset::binary()} |
-        {dataset, attribute, get, Dataset::binary(), Attribute::binary()} |
-        {dataset, attribute, set, Dataset::binary(), Attribute::binary(), Value::value()} |
-        {dataset, attribute, set, Dataset::binary(), Attributes::config_list()} |
+        {dataset, get, Dataset::binary()} |
+        {dataset, set, Dataset::binary(), Attribute::binary(), Value::value()} |
+        {dataset, set, Dataset::binary(), Attributes::config_list()} |
         {dataset, list} |
         {dataset, list, Requirements::[matcher()]}.
+
+-type sniffle_image_message() ::
+        {img, create, Img::uuid(), Idx::pos_integer(), Data::binary()} |
+        {img, delete, Img::uuid(), Idx::pos_integer()} |
+        {img, get, Img::uuid(), Idx::pos_integer()} |
+        {img, list} |
+        {img, list, Img::uuid()}.
 
 -type sniffle_iprange_message() ::
         {iprange, create,
@@ -221,35 +256,29 @@
          Netmask::integer(),
          First::integer(),
          Last::integer(),
-         Tag::binary()} |
+         Tag::binary(),
+         VLan::pos_integer()} |
         {iprange, delete, Iprange::binary()} |
         {iprange, get, Iprange::binary()} |
         {iprange, release, Iprange::binary(), Ip::integer()} |
         {iprange, claim, Iprange::binary()} |
         {iprange, list} |
-        {iprange, list, Requirements::[matcher()]}.
+        {iprange, list, Requirements::[matcher()]} |
+        {iprange, set, Iprange::binary(), Attribute::binary(), Value::value()} |
+        {iprange, set, Iprange::binary(), Attributes::config_list()}.
 
 -type sniffle_package_message() ::
         {package, create, Package::binary()} |
         {package, delete, Package::binary()} |
         {package, get, Package::binary()} |
-        {package, attribute, get, Package::binary()} |
-        {package, attribute, get, Package::binary(), Attribute::binary()} |
-        {package, attribute, set, Package::binary(), Attribute::binary(), Value::value()} |
-        {package, attribute, set, Package::binary(), Attributes::config_list()} |
+        {package, set, Package::binary(), Attribute::binary(), Value::value()} |
+        {package, set, Package::binary(), Attributes::config_list()} |
         {package, list} |
         {package, list, Requirements::[matcher()]}.
 
--type sniffle_message() ::
-        ping |
-        version |
-        {cloud, status} |
-        sniffle_vm_messages() |
-        sniffle_hypervisor_messages() |
-        sniffle_dataset_message() |
-        sniffle_iprange_message() |
-        sniffle_package_message().
-
+%%%===================================================================
+%%%  Snarl
+%%%===================================================================
 
 -type smarl_message() ::
         version |
