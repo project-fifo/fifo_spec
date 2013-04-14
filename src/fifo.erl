@@ -2,6 +2,8 @@
 
 
 -export_type([config_list/0,
+              attr_list/0,
+              key/0,
               config/0,
               package/0,
               dataset/0,
