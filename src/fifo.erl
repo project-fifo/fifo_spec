@@ -179,7 +179,11 @@
          PSpec::package(),
          DSpec::dataset(),
          Config::config()} |
-        {machines, delete, UUID::vm_id()}.
+        {machines, delete, UUID::vm_id()} |
+        {machines, update,
+         UUID::vm_id(),
+         PSpec::package(),
+         Config::config()}.
 
 %%%===================================================================
 %%%  Sniffle
