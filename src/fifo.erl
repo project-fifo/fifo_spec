@@ -191,7 +191,7 @@
         sniffle_package_message().
 
 -type sniffle_dtrace_message() ::
-        {dtrace, add, Name::binary(), Script::binary()} |
+        {dtrace, add, Name::binary(), Script::string()} |
         {dtrace, delete, ID::uuid()} |
         {dtrace, get, ID::uuid()} |
         {dtrace, list} |
@@ -235,6 +235,7 @@
 -type sniffle_dataset_message() ::
         {dataset, create, Dataset::binary()} |
         {dataset, delete, Dataset::binary()} |
+        {dataset, import, URL::binary()} |
         {dataset, get, Dataset::binary()} |
         {dataset, set, Dataset::binary(), Attribute::binary(), Value::value()} |
         {dataset, set, Dataset::binary(), Attributes::config_list()} |
@@ -243,6 +244,7 @@
 
 -type sniffle_image_message() ::
         {img, create, Img::uuid(), Idx::pos_integer(), Data::binary()} |
+        {img, delete, Img::uuid()} |
         {img, delete, Img::uuid(), Idx::pos_integer()} |
         {img, get, Img::uuid(), Idx::pos_integer()} |
         {img, list} |
