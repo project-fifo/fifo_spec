@@ -35,7 +35,7 @@
 
 -export_type([sniffle_message/0,
               chunter_message/0,
-              smarl_message/0]).
+              snarl_message/0]).
 
 -export_type([hypervisor/0,
               hypervisor_id/0]).
@@ -286,7 +286,7 @@
 %%%  Snarl
 %%%===================================================================
 
--type smarl_message() ::
+-type snarl_message() ::
         version |
         {token, delete, Token::uuid()} |
         {user, list} |
