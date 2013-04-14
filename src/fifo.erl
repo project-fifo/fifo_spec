@@ -288,6 +288,7 @@
 
 -type smarl_message() ::
         version |
+        {token, delete, Token::uuid()} |
         {user, list} |
         {user, get,
          User::{token, Token::uuid()} | uuid()} |
