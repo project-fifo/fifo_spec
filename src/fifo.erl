@@ -4,6 +4,7 @@
 -export_type([config_list/0,
               attr_list/0,
               key/0,
+              keys/0,
               object/0,
               config/0,
               package/0,
