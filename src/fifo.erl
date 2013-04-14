@@ -223,7 +223,7 @@
         {dtrace, get, ID::uuid()} |
         {dtrace, list} |
         {dtrace, list, Requreiments::[matcher()]} |
-        {dtrace, attribute, set, ID::uuid(), Attribute::keys(), Value::value()} |
+        {dtrace, attribute, set, ID::uuid(), Attribute::keys(), Value::value() | delete} |
         {dtrace, attribute, set, ID::uuid(), Attributes::attr_list()} |
         {dtrace, run, ID::uuid(), Servers::[hypervisor()]}.
 
@@ -243,7 +243,7 @@
         {vm, reboot, Vm::uuid()} |
         {vm, stop, force, Vm::uuid()} |
         {vm, reboot, force, Vm::uuid()} |
-        {vm, set, Vm::uuid(), Attribute::keys(), Value::value()} |
+        {vm, set, Vm::uuid(), Attribute::keys(), Value::value() | delete} |
         {vm, set, Vm::uuid(), Attributes::attr_list()} |
         {vm, list} |
         {vm, list, Requirements::[matcher()]}.
@@ -254,7 +254,7 @@
          Port::inet:port_number()} |
         {hypervisor, unregister, Hypervisor::hypervisor()} |
         {hypervisor, get, Hypervisor::hypervisor()} |
-        {hypervisor, set, Hypervisor::hypervisor(), Resource::binary(), Value::value()} |
+        {hypervisor, set, Hypervisor::hypervisor(), Resource::binary(), Value::value() | delete} |
         {hypervisor, set, Hypervisor::hypervisor(), Resources::config_list()} |
         {hypervisor, list} |
         {hypervisor, list, Requirements::[matcher()]}.
@@ -264,7 +264,7 @@
         {dataset, delete, Dataset::binary()} |
         {dataset, import, URL::binary()} |
         {dataset, get, Dataset::binary()} |
-        {dataset, set, Dataset::binary(), Attribute::keys(), Value::value()} |
+        {dataset, set, Dataset::binary(), Attribute::keys(), Value::value() | delete} |
         {dataset, set, Dataset::binary(), Attributes::attr_list()} |
         {dataset, list} |
         {dataset, list, Requirements::[matcher()]}.
@@ -293,14 +293,14 @@
         {iprange, claim, Iprange::binary()} |
         {iprange, list} |
         {iprange, list, Requirements::[matcher()]} |
-        {iprange, set, Iprange::binary(), Attribute::keys(), Value::value()} |
+        {iprange, set, Iprange::binary(), Attribute::keys(), Value::value() | delete} |
         {iprange, set, Iprange::binary(), Attributes::attr_list()}.
 
 -type sniffle_package_message() ::
         {package, create, PackageName::binary()} |
         {package, delete, Package::uuid()} |
         {package, get, Package::uuid()} |
-        {package, set, Package::uuid(), Attribute::keys(), Value::value()} |
+        {package, set, Package::uuid(), Attribute::keys(), Value::value() | delete} |
         {package, set, Package::uuid(), Attributes::attr_list()} |
         {package, list} |
         {package, list, Requirements::[matcher()]}.
