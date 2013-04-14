@@ -125,11 +125,14 @@
 -type matcher_type() ::
         'must' | 'cant' | number().
 
+-type permission_key() ::
+        [binary() | {binary(), binary()}].
+
 -type matcher() ::
         {matcher_type(), number_comparer(), Key::binary(), number()} |
         {matcher_type(), set_comparer(), Key::binary(), [term()]} |
         {matcher_type(), element_comparer(), Key::binary(), term()} |
-        {matcher_type(), permission_comparer(), Key::binary(), [permission()]}.
+        {matcher_type(), permission_comparer(), Key::permission_key(), [permission()]}.
 
 -type hypervisor() ::
         binary().
