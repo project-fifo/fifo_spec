@@ -75,7 +75,6 @@
 -type package_id() :: uuid().
 -type iprange_id() :: uuid().
 
-
 -type log() :: {{integer(), integer(), integer()}, term()}.
 
 -type group() :: object().
@@ -141,14 +140,13 @@
         {matcher_type(), element_comparer(), Key::binary(), term()} |
         {matcher_type(), permission_comparer(), Key::permission_key(), [permission()]}.
 
--type hypervisor() ::
-        binary().
-
 -type config_list() :: [{Key::binary(),
                          Value::value()}].
 
 -type attr_list() :: [{Key::keys(),
                        Value::value()}].
+
+-type hypervisor() :: object().
 
 -type vm_config() :: object().
 
