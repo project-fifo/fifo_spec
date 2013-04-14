@@ -50,7 +50,6 @@
               coverage_fsm_reply/0]).
 
 
-
 -type key()::binary()|integer().
 
 -type keys()::key()|[key()].
@@ -166,16 +165,21 @@
 
 -type chunter_message() ::
         ping |
-        {machines, start, UUID::uuid()} |
-        {machines, start, UUID::uuid(), Image::binary()} |
-        {machines, stop, UUID::uuid()} |
-        {machines, reboot, UUID::uuid()} |
+        {machines, start, UUID::vm_id()} |
+        {machines, start, UUID::vm_id(), Image::binary()} |
+        {machines, stop, UUID::vm_id()} |
+        {machines, stop, force, UUID::vm_id()} |
+        {machines, reboot, UUID::vm_id()} |
+        {machines, reboot, force, UUID::vm_id()} |
+        {machines, snapshot, UUID::vm_id(), SnapID::uuid()} |
+        {machines, snapshot, delete, UUID::vm_id(), SnapID::uuid()} |
+        {machines, snapshot, rollback, UUID::vm_id(), SnapID::uuid()} |
         {machines, create,
-         UUID::uuid(),
+         UUID::vm_id(),
          PSpec::package(),
          DSpec::dataset(),
          Config::config()} |
-        {machines, delete, UUID::uuid()}.
+        {machines, delete, UUID::vm_id()}.
 
 %%%===================================================================
 %%%  Sniffle
