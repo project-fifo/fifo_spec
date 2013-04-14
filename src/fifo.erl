@@ -4,6 +4,7 @@
 -export_type([config_list/0,
               attr_list/0,
               key/0,
+              object/0,
               config/0,
               package/0,
               dataset/0,
@@ -36,6 +37,7 @@
               permission_comparer/0]).
 
 -export_type([sniffle_message/0,
+              howl_message/0,
               chunter_message/0,
               snarl_message/0]).
 
@@ -160,11 +162,22 @@
         binary().
 
 %%%===================================================================
+%%%  Howl
+%%%===================================================================
+
+-type howl_message() ::
+        ping |
+        version |
+        {msg, Channel::uuid(), Message::object()} |
+        {msg, Messages::[{Channel::uuid(), Message::object()}]}.
+
+%%%===================================================================
 %%%  Chunter
 %%%===================================================================
 
 -type chunter_message() ::
         ping |
+        version |
         {machines, start, UUID::vm_id()} |
         {machines, start, UUID::vm_id(), Image::binary()} |
         {machines, stop, UUID::vm_id()} |
