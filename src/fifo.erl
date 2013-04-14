@@ -125,6 +125,7 @@
         {matcher_type(), element_comparer(), Key::binary(), term()} |
         {matcher_type(), permission_comparer(), Key::binary(), permission()}.
 
+-type key() :: binary() | [binary()].
 
 
 -type value() :: number() |
@@ -138,6 +139,9 @@
 
 -type config_list() :: [{Key::binary(),
                          Value::value()}].
+
+-type attr_list() :: [{Key::key(),
+                       Value::value()}].
 
 -type vm_config() :: config_list().
 
@@ -196,8 +200,8 @@
         {dtrace, get, ID::uuid()} |
         {dtrace, list} |
         {dtrace, list, Requreiments::[matcher()]} |
-        {dtrace, attribute, set, ID::uuid(), Attribute::binary(), Value::value()} |
-        {dtrace, attribute, set, ID::uuid(), Attributes::config_list()} |
+        {dtrace, attribute, set, ID::uuid(), Attribute::key(), Value::value()} |
+        {dtrace, attribute, set, ID::uuid(), Attributes::attr_list()} |
         {dtrace, run, ID::uuid(), Servers::[hypervisor()]}.
 
 -type sniffle_vm_messages() ::
@@ -216,8 +220,8 @@
         {vm, reboot, Vm::uuid()} |
         {vm, stop, force, Vm::uuid()} |
         {vm, reboot, force, Vm::uuid()} |
-        {vm, set, Vm::uuid(), Attribute::binary(), Value::value()} |
-        {vm, set, Vm::uuid(), Attributes::config_list()} |
+        {vm, set, Vm::uuid(), Attribute::key(), Value::value()} |
+        {vm, set, Vm::uuid(), Attributes::attr_list()} |
         {vm, list} |
         {vm, list, Requirements::[matcher()]}.
 
@@ -237,8 +241,8 @@
         {dataset, delete, Dataset::binary()} |
         {dataset, import, URL::binary()} |
         {dataset, get, Dataset::binary()} |
-        {dataset, set, Dataset::binary(), Attribute::binary(), Value::value()} |
-        {dataset, set, Dataset::binary(), Attributes::config_list()} |
+        {dataset, set, Dataset::binary(), Attribute::key(), Value::value()} |
+        {dataset, set, Dataset::binary(), Attributes::attr_list()} |
         {dataset, list} |
         {dataset, list, Requirements::[matcher()]}.
 
@@ -266,15 +270,15 @@
         {iprange, claim, Iprange::binary()} |
         {iprange, list} |
         {iprange, list, Requirements::[matcher()]} |
-        {iprange, set, Iprange::binary(), Attribute::binary(), Value::value()} |
-        {iprange, set, Iprange::binary(), Attributes::config_list()}.
+        {iprange, set, Iprange::binary(), Attribute::key(), Value::value()} |
+        {iprange, set, Iprange::binary(), Attributes::attr_list()}.
 
 -type sniffle_package_message() ::
-        {package, create, Package::binary()} |
-        {package, delete, Package::binary()} |
-        {package, get, Package::binary()} |
-        {package, set, Package::binary(), Attribute::binary(), Value::value()} |
-        {package, set, Package::binary(), Attributes::config_list()} |
+        {package, create, PackageName::binary()} |
+        {package, delete, Package::uuid()} |
+        {package, get, Package::uuid()} |
+        {package, set, Package::uuid(), Attribute::key(), Value::value()} |
+        {package, set, Package::uuid(), Attributes::attr_list()} |
         {package, list} |
         {package, list, Requirements::[matcher()]}.
 
@@ -286,25 +290,30 @@
         version |
         {user, list} |
         {user, get,
-         User::{token, Token::uuid()} | binary()} |
+         User::{token, Token::uuid()} | uuid()} |
+        {user, set, User::uuid(), Attribute::key(), Value::value()} |
+        {user, set, User::uuid(), Attributes::attr_list()} |
+        {user, lookup, UserName::binary()} |
         {user, cache,
-         User::{token, Token::uuid()} | binary()} |
-        {user, add, User::binary()} |
-        {user, auth, User::binary(), Pass::binary()} |
-        {user, allowed, {token, Token::binary()}, Permission::permission()} |
-        {user, allowed, User::binary(), Permission::permission()} |
-        {user, delete, User::binary()} |
-        {user, passwd, User::binary(), Pass::binary()} |
-        {user, join, User::binary(), Group::group_id()} |
-        {user, leave, User::binary(), Group::group_id()} |
-        {user, grant, User::binary(), Permission::permission()} |
-        {user, revoke, User::binary(), Permission::permission()} |
-        {user, set_resource, User::binary(), Resource::binary(), Value::value()} |
-        {user, claim_resource, User::binary(), Resource::binary(), Ammount::number()} |
-        {user, free_resource, User::binary(), Resource::binary(), ID::uuid()} |
-        {user, resource_stat, User::binary()} |
+         User::{token, Token::uuid()} | uuid()} |
+        {user, add, UserName::binary()} |
+        {user, auth, UserName::binary(), Pass::binary()} |
+        {user, allowed, User::{token, Token::uuid()}|uuid(), Permission::permission()} |
+        {user, delete, User::uuid()} |
+        {user, passwd, User::uuid(), Pass::binary()} |
+        {user, join, User::uuid(), Group::group_id()} |
+        {user, leave, User::uuid(), Group::group_id()} |
+        {user, grant, User::uuid(), Permission::permission()} |
+        {user, revoke, User::uuid(), Permission::permission()} |
+        {user, revoke_all, User::uuid(), Permission::permission()} |
+        {user, set_resource, User::uuid(), Resource::binary(), Value::value()} |
+        {user, claim_resource, User::uuid(), Resource::binary(), Ammount::number()} |
+        {user, free_resource, User::uuid(), Resource::binary(), ID::uuid()} |
+        {user, resource_stat, User::uuid()} |
         {group, list} |
         {group, get, Group::group_id()} |
+        {group, set, Group::group_id(), Attribute::key(), Value::value()} |
+        {group, set, Group::group_id(), Attributes::attr_list()} |
         {group, add, Group::group_id()} |
         {group, delete, Group::group_id()} |
         {group, grant, Group::group_id(), Permission::permission()} |
