@@ -9,6 +9,9 @@
               config/0,
               package/0,
               dataset/0,
+              dataset_id/0,
+              package_id/0,
+              iprange_id/0,
               vm_config/0,
               vm_type/0,
               vm_state/0,
@@ -67,7 +70,11 @@
 -type vm_id() :: uuid().
 -type user_id() :: uuid().
 -type group_id() :: uuid().
--type resource_id() :: binary().
+-type resource_id() :: uuid().
+-type dataset_id() :: uuid().
+-type package_id() :: uuid().
+-type iprange_id() :: uuid().
+
 
 -type log() :: {{integer(), integer(), integer()}, term()}.
 
