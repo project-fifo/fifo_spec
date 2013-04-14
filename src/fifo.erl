@@ -39,8 +39,13 @@
 
 -export_type([hypervisor/0,
               hypervisor_id/0]).
+
 -export_type([vm/0,
               vm_id/0]).
+
+-export_type([write_fsm_reply/0,
+              read_fsm_reply/0,
+              coverage_fsm_reply/0]).
 
 -type hypervisor_id() :: binary().
 -type vm_id() :: binary().
@@ -168,13 +173,12 @@
 -type vm_state() ::
         binary().
 
-
 -type sniffle_vm_messages() ::
+        {vm, log, Vm::uuid(), Log::term()} |
         {vm, register, Vm::uuid(), Hypervisor::binary()} |
         {vm, create, Package::binary(), Dataset::binary(), Config::config()} |
         {vm, unregister, Vm::uuid()} |
         {vm, get, Vm::uuid()} |
-        {vm, log, Vm::uuid(), Log::term()} |
         {vm, attribute, get, Vm::uuid()} |
         {vm, start, Vm::uuid()} |
         {vm, delete, Vm::uuid()} |
@@ -274,3 +278,12 @@
         {group, delete, Group::group_id()} |
         {group, grant, Group::group_id(), Permission::permission()} |
         {group, revoke, Group::group_id(), Permission::permission()}.
+
+-type write_fsm_reply() ::
+        not_found | ok | {error, timeout} | {ok, term()}.
+
+-type read_fsm_reply() ::
+        {ok, not_found} | {error, timeout} | {ok, term()}.
+
+-type coverage_fsm_reply() ::
+        not_found | {error, timeout} | {ok, term()}.
