@@ -63,7 +63,6 @@
 
 -type jsxarray()::[value()].
 
-
 -type hypervisor_id() :: binary().
 -type vm_id() :: uuid().
 -type user_id() :: uuid().
@@ -316,7 +315,7 @@
         {user, list} |
         {user, get,
          User::{token, Token::uuid()} | uuid()} |
-        {user, set, User::uuid(), Attribute::keys(), Value::value()} |
+        {user, set, User::uuid(), Attribute::keys(), Value::value() | delete} |
         {user, set, User::uuid(), Attributes::attr_list()} |
         {user, lookup, UserName::binary()} |
         {user, cache,
@@ -337,7 +336,7 @@
         {user, resource_stat, User::uuid()} |
         {group, list} |
         {group, get, Group::group_id()} |
-        {group, set, Group::group_id(), Attribute::keys(), Value::value()} |
+        {group, set, Group::group_id(), Attribute::keys(), Value::value() | delete} |
         {group, set, Group::group_id(), Attributes::attr_list()} |
         {group, add, Group::group_id()} |
         {group, delete, Group::group_id()} |
