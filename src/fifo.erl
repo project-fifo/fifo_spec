@@ -49,27 +49,30 @@
               read_fsm_reply/0,
               coverage_fsm_reply/0]).
 
+
+
+-type key()::binary()|integer().
+
+-type keys()::key()|[key()].
+
+-type value()::binary()|number()|object()|jsxarray()|null|true|false.
+
+-type object()::[{binary(), value()}].
+
+-type jsxarray()::[value()].
+
+
 -type hypervisor_id() :: binary().
--type vm_id() :: binary().
--type user_id() :: binary().
--type group_id() :: binary().
+-type vm_id() :: uuid().
+-type user_id() :: uuid().
+-type group_id() :: uuid().
 -type resource_id() :: binary().
 
 -type log() :: {{integer(), integer(), integer()}, term()}.
 
--type group() ::
-        {group,
-         Name :: group_id(),
-         Permissions :: [permission()],
-         Users :: [user_id()]}.
+-type group() :: object().
 
--type user() ::
-        {user,
-         Name :: user_id(),
-         Passwd :: binary(),
-         Permissions :: [permission()],
-         Resources :: [resource()],
-         Groups :: [group_id()]}.
+-type user() :: object().
 
 
 -type resource() ::
@@ -127,35 +130,39 @@
         {matcher_type(), element_comparer(), Key::binary(), term()} |
         {matcher_type(), permission_comparer(), Key::binary(), permission()}.
 
--type key() :: binary() | [binary()].
-
-
--type value() :: number() |
-                 boolean() |
-                 binary() |
-                 [value()] |
-                 config_list().
-
 -type hypervisor() ::
         binary().
 
 -type config_list() :: [{Key::binary(),
                          Value::value()}].
 
--type attr_list() :: [{Key::key(),
+-type attr_list() :: [{Key::keys(),
                        Value::value()}].
 
--type vm_config() :: config_list().
+-type vm_config() :: object().
 
--type config() :: config_list().
+-type config() :: object().
 
--type package() :: config_list().
+-type package() :: object().
 
--type dataset() :: config_list().
+-type dataset() :: object().
 
 -type uuid() :: binary().
 
 -type vm_type() :: kvm | zone.
+
+-type vm_state_atom() ::
+        booting |
+        shutting_down |
+        running |
+        stopped.
+
+-type vm_state() ::
+        binary().
+
+%%%===================================================================
+%%%  Chunter
+%%%===================================================================
 
 -type chunter_message() ::
         ping |
@@ -170,19 +177,9 @@
          Config::config()} |
         {machines, delete, UUID::uuid()}.
 
--type vm_state_atom() ::
-        booting |
-        shutting_down |
-        running |
-        stopped.
-
--type vm_state() ::
-        binary().
-
 %%%===================================================================
 %%%  Sniffle
 %%%===================================================================
-
 
 -type sniffle_message() ::
         ping |
@@ -202,7 +199,7 @@
         {dtrace, get, ID::uuid()} |
         {dtrace, list} |
         {dtrace, list, Requreiments::[matcher()]} |
-        {dtrace, attribute, set, ID::uuid(), Attribute::key(), Value::value()} |
+        {dtrace, attribute, set, ID::uuid(), Attribute::keys(), Value::value()} |
         {dtrace, attribute, set, ID::uuid(), Attributes::attr_list()} |
         {dtrace, run, ID::uuid(), Servers::[hypervisor()]}.
 
@@ -222,7 +219,7 @@
         {vm, reboot, Vm::uuid()} |
         {vm, stop, force, Vm::uuid()} |
         {vm, reboot, force, Vm::uuid()} |
-        {vm, set, Vm::uuid(), Attribute::key(), Value::value()} |
+        {vm, set, Vm::uuid(), Attribute::keys(), Value::value()} |
         {vm, set, Vm::uuid(), Attributes::attr_list()} |
         {vm, list} |
         {vm, list, Requirements::[matcher()]}.
@@ -243,7 +240,7 @@
         {dataset, delete, Dataset::binary()} |
         {dataset, import, URL::binary()} |
         {dataset, get, Dataset::binary()} |
-        {dataset, set, Dataset::binary(), Attribute::key(), Value::value()} |
+        {dataset, set, Dataset::binary(), Attribute::keys(), Value::value()} |
         {dataset, set, Dataset::binary(), Attributes::attr_list()} |
         {dataset, list} |
         {dataset, list, Requirements::[matcher()]}.
@@ -272,14 +269,14 @@
         {iprange, claim, Iprange::binary()} |
         {iprange, list} |
         {iprange, list, Requirements::[matcher()]} |
-        {iprange, set, Iprange::binary(), Attribute::key(), Value::value()} |
+        {iprange, set, Iprange::binary(), Attribute::keys(), Value::value()} |
         {iprange, set, Iprange::binary(), Attributes::attr_list()}.
 
 -type sniffle_package_message() ::
         {package, create, PackageName::binary()} |
         {package, delete, Package::uuid()} |
         {package, get, Package::uuid()} |
-        {package, set, Package::uuid(), Attribute::key(), Value::value()} |
+        {package, set, Package::uuid(), Attribute::keys(), Value::value()} |
         {package, set, Package::uuid(), Attributes::attr_list()} |
         {package, list} |
         {package, list, Requirements::[matcher()]}.
@@ -294,7 +291,7 @@
         {user, list} |
         {user, get,
          User::{token, Token::uuid()} | uuid()} |
-        {user, set, User::uuid(), Attribute::key(), Value::value()} |
+        {user, set, User::uuid(), Attribute::keys(), Value::value()} |
         {user, set, User::uuid(), Attributes::attr_list()} |
         {user, lookup, UserName::binary()} |
         {user, cache,
@@ -315,7 +312,7 @@
         {user, resource_stat, User::uuid()} |
         {group, list} |
         {group, get, Group::group_id()} |
-        {group, set, Group::group_id(), Attribute::key(), Value::value()} |
+        {group, set, Group::group_id(), Attribute::keys(), Value::value()} |
         {group, set, Group::group_id(), Attributes::attr_list()} |
         {group, add, Group::group_id()} |
         {group, delete, Group::group_id()} |
