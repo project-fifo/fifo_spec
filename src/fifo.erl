@@ -10,6 +10,7 @@
               package/0,
               dataset/0,
               dataset_id/0,
+              dtrace_id/0,
               package_id/0,
               iprange_id/0,
               vm_config/0,
@@ -74,6 +75,7 @@
 -type dataset_id() :: uuid().
 -type package_id() :: uuid().
 -type iprange_id() :: uuid().
+-type dtrace_id() :: uuid().
 
 -type log() :: {{integer(), integer(), integer()}, term()}.
 
