@@ -257,7 +257,7 @@
 
 -type sniffle_hypervisor_messages() ::
         {hypervisor, register, Hypervisor::hypervisor(),
-         Host::inet:ip_address() | inet:hostname(),
+         Host::binary(),
          Port::inet:port_number()} |
         {hypervisor, unregister, Hypervisor::hypervisor()} |
         {hypervisor, get, Hypervisor::hypervisor()} |
