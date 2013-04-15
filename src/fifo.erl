@@ -352,7 +352,7 @@
         not_found | ok | {error, timeout} | {ok, term()}.
 
 -type read_fsm_reply() ::
-        {ok, not_found} | {error, timeout} | {ok, term()}.
+        not_found | {error, timeout} | {ok, term()}.
 
 -type coverage_fsm_reply() ::
         not_found | {error, timeout} | {ok, term()}.
