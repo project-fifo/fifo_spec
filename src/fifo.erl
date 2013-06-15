@@ -336,7 +336,7 @@
         {user, leave, User::uuid(), Group::group_id()} |
         {user, grant, User::uuid(), Permission::permission()} |
         {user, revoke, User::uuid(), Permission::permission()} |
-        {user, revoke_all, User::uuid(), Permission::permission()} |
+        {user, revoke_prefix, User::uuid(), Permission::permission()} |
         {user, set_resource, User::uuid(), Resource::binary(), Value::value()} |
         {user, claim_resource, User::uuid(), Resource::binary(), Ammount::number()} |
         {user, free_resource, User::uuid(), Resource::binary(), ID::uuid()} |
@@ -348,6 +348,7 @@
         {group, add, Group::group_id()} |
         {group, delete, Group::group_id()} |
         {group, grant, Group::group_id(), Permission::permission()} |
+        {group, revoke_prefix, Group::group_id(), Permission::permission()} |
         {group, revoke, Group::group_id(), Permission::permission()}.
 
 -type write_fsm_reply() ::
