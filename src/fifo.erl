@@ -162,7 +162,7 @@
 
 -type dataset() :: object().
 
--type uuid() :: binary().
+-type uuid() :: <<_:288>>.
 
 -type vm_type() :: kvm | zone.
 
@@ -350,7 +350,7 @@
         {group, get, Group::group_id()} |
         {group, set, Group::group_id(), Attribute::keys(), Value::value() | delete} |
         {group, set, Group::group_id(), Attributes::attr_list()} |
-        {group, add, Group::group_id()} |
+        {group, add, GroupName::binary()} |
         {group, delete, Group::group_id()} |
         {group, grant, Group::group_id(), Permission::permission()} |
         {group, revoke_prefix, Group::group_id(), Permission::permission()} |
