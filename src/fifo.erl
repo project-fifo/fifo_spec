@@ -27,7 +27,8 @@
               group_id/0,
               user_id/0,
               user_token_id/0,
-              group/0
+              group/0,
+              token/0
              ]).
 
 -export_type([resource_id/0,
