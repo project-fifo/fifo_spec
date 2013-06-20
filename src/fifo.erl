@@ -202,6 +202,7 @@
         {machines, snapshot, UUID::vm_id(), SnapID::uuid()} |
         {machines, snapshot, delete, UUID::vm_id(), SnapID::uuid()} |
         {machines, snapshot, rollback, UUID::vm_id(), SnapID::uuid()} |
+        {machines, snapshot, store, UUID::vm_id(), SnapID::uuid(), Img::dataset_id()} |
         {machines, create,
          UUID::vm_id(),
          PSpec::package(),
