@@ -245,9 +245,11 @@
         {vm, snapshot, Vm::vm_id(), Comment::binary()} |
         {vm, snapshot, delete, Vm::vm_id(), UUID::uuid()} |
         {vm, snapshot, rollback, Vm::vm_id(), UUID::uuid()} |
-        {vm, snapshot, promote, Vm::vm_id(), UUID::uuid(), Dataset::dataset_id()} |
+        {vm, snapshot, promote, Vm::vm_id(),
+         UUID::uuid(), Dataset::dataset_id()} |
         {vm, create, Package::binary(), Dataset::binary(), Config::config()} |
-        {vm, update, Vm::vm_id(), Package::package_id(), Config::config()} |
+        {vm, update, Vm::vm_id(),
+         Package::package_id() | undefined, Config::config()} |
         {vm, unregister, Vm::vm_id()} |
         {vm, get, Vm::vm_id()} |
         {vm, start, Vm::vm_id()} |
