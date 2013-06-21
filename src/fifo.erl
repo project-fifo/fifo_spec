@@ -1,6 +1,5 @@
 -module(fifo).
 
-
 -export_type([config_list/0,
               attr_list/0,
               key/0,
@@ -21,7 +20,6 @@
               value/0,
               matcher/0,
               uuid/0]).
-
 
 -export_type([user/0,
               group_id/0,
@@ -247,6 +245,7 @@
         {vm, snapshot, Vm::vm_id(), Comment::binary()} |
         {vm, snapshot, delete, Vm::vm_id(), UUID::uuid()} |
         {vm, snapshot, rollback, Vm::vm_id(), UUID::uuid()} |
+        {vm, snapshot, promote, Vm::vm_id(), UUID::uuid(), Dataset::dataset_id()} |
         {vm, create, Package::binary(), Dataset::binary(), Config::config()} |
         {vm, update, Vm::vm_id(), Package::package_id(), Config::config()} |
         {vm, unregister, Vm::vm_id()} |
@@ -260,7 +259,10 @@
         {vm, set, Vm::vm_id(), Attribute::keys(), Value::value() | delete} |
         {vm, set, Vm::vm_id(), Attributes::attr_list()} |
         {vm, list} |
-        {vm, list, Requirements::[matcher()]}.
+        {vm, list, Requirements::[matcher()]} |
+        {vm, nic, add, Vm::vm_id(), IPRange::iprange_id()} |
+        {vm, nic, remove ,Vm::vm_id(), IPRange::iprange_id()} |
+        {vm, nic, primary ,Vm::vm_id(), MAC::binary()}.
 
 -type sniffle_hypervisor_messages() ::
         {hypervisor, register, Hypervisor::hypervisor(),
