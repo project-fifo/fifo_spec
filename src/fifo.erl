@@ -246,7 +246,7 @@
         {vm, snapshot, delete, Vm::vm_id(), UUID::uuid()} |
         {vm, snapshot, rollback, Vm::vm_id(), UUID::uuid()} |
         {vm, snapshot, promote, Vm::vm_id(),
-         UUID::uuid(), Dataset::dataset_id()} |
+         SnapUUID::uuid(), Dataset::config()} |
         {vm, create, Package::binary(), Dataset::binary(), Config::config()} |
         {vm, update, Vm::vm_id(),
          Package::package_id() | undefined, Config::config()} |
