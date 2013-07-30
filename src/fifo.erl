@@ -22,10 +22,12 @@
               uuid/0]).
 
 -export_type([user/0,
-              group_id/0,
               user_id/0,
-              user_token_id/0,
               group/0,
+              group_id/0,
+              org/0,
+              org_id/0,
+              user_token_id/0,
               token/0
              ]).
 
@@ -70,6 +72,7 @@
 -type hypervisor_id() :: binary().
 -type vm_id() :: uuid().
 -type user_id() :: uuid().
+-type org_id() :: uuid().
 -type user_token_id() :: user_id() | {token, Token::token()}.
 -type group_id() :: uuid().
 -type resource_id() :: uuid().
@@ -84,6 +87,8 @@
 -type group() :: object().
 
 -type user() :: object().
+
+-type org() :: object().
 
 -type token() :: uuid().
 
