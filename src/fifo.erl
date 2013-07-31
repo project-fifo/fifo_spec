@@ -31,7 +31,8 @@
               org_id/0,
               user_token_id/0,
               token/0,
-              trigger/0
+              trigger/0,
+              event/0
              ]).
 
 -export_type([resource_id/0,
@@ -99,6 +100,7 @@
 
 -type token() :: uuid().
 
+-type event() :: atom().
 
 -type resource() ::
         {resource,
