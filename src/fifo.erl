@@ -12,6 +12,8 @@
               dtrace_id/0,
               package_id/0,
               iprange_id/0,
+              network/0,
+              network_id/0,
               vm_config/0,
               vm_type/0,
               vm_state/0,
@@ -28,7 +30,8 @@
               org/0,
               org_id/0,
               user_token_id/0,
-              token/0
+              token/0,
+              trigger/0
              ]).
 
 -export_type([resource_id/0,
@@ -79,6 +82,7 @@
 -type dataset_id() :: uuid().
 -type package_id() :: uuid().
 -type iprange_id() :: uuid().
+-type network_id() :: uuid().
 -type dtrace_id() :: uuid().
 
 -type trigger() :: term().
@@ -91,7 +95,10 @@
 
 -type org() :: object().
 
+-type network() :: object().
+
 -type token() :: uuid().
+
 
 -type resource() ::
         {resource,
@@ -232,6 +239,7 @@
         sniffle_dataset_message() |
         sniffle_image_message() |
         sniffle_iprange_message() |
+        sniffle_network_message() |
         sniffle_package_message().
 
 -type sniffle_dtrace_message() ::
@@ -285,7 +293,7 @@
 
 -type sniffle_dataset_message() ::
         {dataset, create, Dataset::binary()} |
-        {dataset, delete, Dataset::binary()} |
+        {dataset, delete, Dataset::dataset_id()} |
         {dataset, import, URL::binary()} |
         {dataset, get, Dataset::binary()} |
         {dataset, set, Dataset::binary(), Attribute::keys(), Value::value() | delete} |
@@ -301,6 +309,17 @@
         {img, list} |
         {img, list, Img::dataset_id()}.
 
+-type sniffle_network_message() ::
+        {network, create, Network::binary()} |
+        {network, delete, Network::network_id()} |
+        {network, add_iprange, Network::network_id(), Iprange::iprange_id()} |
+        {network, remove_iprange, Network::network_id(), Iprange::iprange_id()} |
+        {network, get, Network::binary()} |
+        {network, set, Network::binary(), Attribute::keys(), Value::value() | delete} |
+        {network, set, Network::binary(), Attributes::attr_list()} |
+        {network, list} |
+        {network, list, Requirements::[matcher()]}.
+
 -type sniffle_iprange_message() ::
         {iprange, create,
          Iprange::binary(),
@@ -311,14 +330,14 @@
          Last::integer(),
          Tag::binary(),
          VLan::pos_integer()} |
-        {iprange, delete, Iprange::binary()} |
-        {iprange, get, Iprange::binary()} |
-        {iprange, release, Iprange::binary(), Ip::integer()} |
-        {iprange, claim, Iprange::binary()} |
+        {iprange, delete, Iprange::iprange_id()} |
+        {iprange, get, Iprange::iprange_id()} |
+        {iprange, release, Iprange::iprange_id(), Ip::integer()} |
+        {iprange, claim, Iprange::iprange_id()} |
         {iprange, list} |
         {iprange, list, Requirements::[matcher()]} |
-        {iprange, set, Iprange::binary(), Attribute::keys(), Value::value() | delete} |
-        {iprange, set, Iprange::binary(), Attributes::attr_list()}.
+        {iprange, set, Iprange::iprange_id(), Attribute::keys(), Value::value() | delete} |
+        {iprange, set, Iprange::iprange_id(), Attributes::attr_list()}.
 
 -type sniffle_package_message() ::
         {package, create, PackageName::binary()} |
