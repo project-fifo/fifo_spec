@@ -81,6 +81,7 @@
 -type iprange_id() :: uuid().
 -type dtrace_id() :: uuid().
 
+-type trigger() :: term().
 
 -type log() :: {{integer(), integer(), integer()}, term()}.
 
@@ -336,14 +337,14 @@
         version |
         {token, delete, Token::token()} |
         {user, list} |
-        {user, get,
-         User::user_token_id()} |
+        {user, list, Requirements::[matcher()]} |
+        {user, get, User::user_token_id()} |
         {user, set, User::user_id(), Attribute::keys(), Value::value() | delete} |
         {user, set, User::user_id(), Attributes::attr_list()} |
         {user, lookup, UserName::binary()} |
-        {user, cache,
-         User::user_token_id()} |
+        {user, cache, User::user_token_id()} |
         {user, add, UserName::binary()} |
+        {user, add, Creator::user_id(), UserName::binary()} |
         {user, auth, UserName::binary(), Pass::binary()} |
         {user, allowed, User::user_token_id(), Permission::permission()} |
         {user, delete, User::user_id()} |
@@ -357,7 +358,16 @@
         {user, claim_resource, User::user_id(), Resource::binary(), Ammount::number()} |
         {user, free_resource, User::user_id(), Resource::binary(), ID::uuid()} |
         {user, resource_stat, User::user_id()} |
+        {user, keys, find, KeyID::binary()} |
+        {user, keys, add, User::user_id(), KeyID::binary(), Key::binary()} |
+        {user, keys, revoke, User::user_id(), KeyID::binary()} |
+        {user, keys, get, User::user_id()} |
+        {user, org, join, User::user_id(), Org::org_id()} |
+        {user, org, leave, User::user_id(), Org::group_id()} |
+        {user, org, active, User::user_id()} |
+        {user, org, select, User::user_id(), Org::org_id()} |
         {group, list} |
+        {group, list, Requirements::[matcher()]} |
         {group, get, Group::group_id()} |
         {group, set, Group::group_id(), Attribute::keys(), Value::value() | delete} |
         {group, set, Group::group_id(), Attributes::attr_list()} |
@@ -365,7 +375,17 @@
         {group, delete, Group::group_id()} |
         {group, grant, Group::group_id(), Permission::permission()} |
         {group, revoke_prefix, Group::group_id(), Permission::permission()} |
-        {group, revoke, Group::group_id(), Permission::permission()}.
+        {group, revoke, Group::group_id(), Permission::permission()} |
+        {org, list} |
+        {org, list, Requirements::[matcher()]} |
+        {org, get, Org::org_id()} |
+        {org, set, Org::org_id(), Attribute::keys(), Value::value() | delete} |
+        {org, set, Org::org_id(), Attributes::attr_list()} |
+        {org, add, OrgName::binary()} |
+        {org, delete, Org::org_id()} |
+        {org, trigger, add, Org::org_id(), Trigger::trigger()} |
+        {org, trigger, remove, Org::org_id(), Trigger::trigger()} |
+        {org, trigger, execute, Org::org_id(), Trigger::trigger(), Payload::term()}.
 
 -type write_fsm_reply() ::
         not_found | ok | {error, timeout} | {ok, term()}.
