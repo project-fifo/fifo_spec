@@ -393,7 +393,7 @@
         {user, org, active, User::user_id()} |
         {user, org, select, User::user_id(), Org::org_id()} |
         {group, list} |
-        {group, list, Requirements::[matcher()], Full::boolean(), Full::boolean()} |
+        {group, list, Requirements::[matcher()], Full::boolean()} |
         {group, get, Group::group_id()} |
         {group, set, Group::group_id(), Attribute::keys(), Value::value() | delete} |
         {group, set, Group::group_id(), Attributes::attr_list()} |
