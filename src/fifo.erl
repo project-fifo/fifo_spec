@@ -189,6 +189,8 @@
 -type vm_state() ::
         binary().
 
+-type backup_opt() :: term().
+
 %%%===================================================================
 %%%  Howl
 %%%===================================================================
@@ -203,7 +205,6 @@
 %%%  Chunter
 %%%===================================================================
 
--type backup_opt() :: term().
 
 -type chunter_message() ::
         ping |
@@ -269,11 +270,22 @@
         {dtrace, run, ID::dtrace_id(), Servers::[hypervisor()]}.
 
 -type sniffle_vm_messages() ::
+        {vm, store, binary()} |
+        {vm, backup, incremental, Vm::vm_id(), Parent::uuid(), BackupID::uuid(),
+         Opts::[backup_opt()]} |
+        {vm, backup, full, Vm::vm_id(), BackupID::uuid(), Opts::[backup_opt()]} |
+        {vm, backup, restore, Vm::vm_id(), BackupID::uuid()} |
+        {vm, backup, restore, Vm::vm_id(), BackupID::uuid(), Opts::[backup_opt()]} |
+        {vm, backup, delete, Vm::vm_id(), BackupID::uuid(), Opts::[backup_opt()]} |
+        {vm, service, enable, Vm::vm_id(), Service::binary()} |
+        {vm, service, disable, Vm::vm_id(), Service::binary()} |
+        {vm, service, clear, Vm::vm_id(), Service::binary()} |
         {vm, log, Vm::vm_id(), Log::term()} |
         {vm, register, Vm::vm_id(), Hypervisor::binary()} |
         {vm, snapshot, Vm::vm_id(), Comment::binary()} |
         {vm, snapshot, delete, Vm::vm_id(), UUID::uuid()} |
         {vm, snapshot, rollback, Vm::vm_id(), UUID::uuid()} |
+        {vm, snapshot, commit_rollback, Vm::vm_id(), UUID::uuid()} |
         {vm, snapshot, promote, Vm::vm_id(),
          SnapUUID::uuid(), Dataset::config()} |
         {vm, create, Package::binary(), Dataset::binary(), Config::config()} |
