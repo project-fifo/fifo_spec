@@ -315,7 +315,8 @@
         {dataset, list, Requirements::[matcher()], Full::boolean()}.
 
 -type sniffle_image_message() ::
-        {img, create, Img::dataset_id(), Idx::integer(), Data::binary()} |
+        {img, create, Img::dataset_id(), Idx::integer(),
+         Data::binary(), Acc::term() | undefined} |
         {img, delete, Img::dataset_id()} |
         {img, delete, Img::dataset_id(), Idx::integer()} |
         {img, get, Img::dataset_id(), Idx::integer()} |
