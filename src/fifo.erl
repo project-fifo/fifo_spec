@@ -203,9 +203,13 @@
 %%%  Chunter
 %%%===================================================================
 
+-type backup_opt() :: term().
+
 -type chunter_message() ::
         ping |
         version |
+        update |
+        {lock, LockID::binary()} |
         {machines, start, UUID::vm_id()} |
         {machines, start, UUID::vm_id(), Image::binary()} |
         {machines, stop, UUID::vm_id()} |
@@ -215,7 +219,14 @@
         {machines, snapshot, UUID::vm_id(), SnapID::uuid()} |
         {machines, snapshot, delete, UUID::vm_id(), SnapID::uuid()} |
         {machines, snapshot, rollback, UUID::vm_id(), SnapID::uuid()} |
-        {machines, snapshot, store, UUID::vm_id(), SnapID::uuid(), Img::dataset_id()} |
+        {machines, backup, UUID::vm_id(), BackupID::uuid(),
+         Opts::[backup_opt()]} |
+        {machines, backup, restore, UUID::vm_id(), BackupID::uuid(),
+         Opts::[backup_opt()]} |
+        {machines, backup, delete, UUID::vm_id(), BackupID::uuid()} |
+        {machines, service, enable | disable | clear,
+         UUID::vm_id(),  Service::uuid()} |
+        {service, enable | disable | clear, Service::uuid()} |
         {machines, create,
          UUID::vm_id(),
          PSpec::package(),
