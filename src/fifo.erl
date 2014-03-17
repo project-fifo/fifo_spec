@@ -219,6 +219,8 @@
         {machines, snapshot, UUID::vm_id(), SnapID::uuid()} |
         {machines, snapshot, delete, UUID::vm_id(), SnapID::uuid()} |
         {machines, snapshot, rollback, UUID::vm_id(), SnapID::uuid()} |
+        {machines, snapshot, store, UUID::vm_id(), SnapID::uuid(),
+         ImgID::uuid()} |
         {machines, backup, UUID::vm_id(), BackupID::uuid(),
          Opts::[backup_opt()]} |
         {machines, backup, restore, UUID::vm_id(), BackupID::uuid(),
