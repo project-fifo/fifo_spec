@@ -276,7 +276,8 @@
         {vm, backup, full, Vm::vm_id(), BackupID::uuid(), Opts::[backup_opt()]} |
         {vm, backup, restore, Vm::vm_id(), BackupID::uuid()} |
         {vm, backup, restore, Vm::vm_id(), BackupID::uuid(), Opts::[backup_opt()]} |
-        {vm, backup, delete, Vm::vm_id(), BackupID::uuid(), Opts::[backup_opt()]} |
+        {vm, backup, delete, Vm::vm_id(), BackupID::uuid(),
+         Where::hypervisor|cloud} |
         {vm, service, enable, Vm::vm_id(), Service::binary()} |
         {vm, service, disable, Vm::vm_id(), Service::binary()} |
         {vm, service, clear, Vm::vm_id(), Service::binary()} |
@@ -329,7 +330,7 @@
         {dataset, list, Requirements::[matcher()], Full::boolean()}.
 
 -type sniffle_image_message() ::
-        {img, create, Img::dataset_id(), Idx::integer(),
+        {img, create, Img::dataset_id(), Idx::integer()|done,
          Data::binary(), Acc::term() | undefined} |
         {img, delete, Img::dataset_id()} |
         {img, delete, Img::dataset_id(), Idx::integer()} |
