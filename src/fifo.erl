@@ -249,7 +249,7 @@
         {dtrace, delete, ID::dtrace_id()} |
         {dtrace, get, ID::dtrace_id()} |
         {dtrace, list} |
-        {dtrace, list, Requreiments::[matcher()]} |
+        {dtrace, list, Requreiments::[matcher()], Full::boolean()} |
         {dtrace, attribute, set, ID::dtrace_id(),
          Attribute::keys(), Value::value() | delete} |
         {dtrace, attribute, set, ID::dtrace_id(), Attributes::attr_list()} |
@@ -277,7 +277,7 @@
         {vm, set, Vm::vm_id(), Attribute::keys(), Value::value() | delete} |
         {vm, set, Vm::vm_id(), Attributes::attr_list()} |
         {vm, list} |
-        {vm, list, Requirements::[matcher()]} |
+        {vm, list, Requirements::[matcher()], Full::boolean()} |
         {vm, nic, add, Vm::vm_id(), IPRange::iprange_id()} |
         {vm, nic, remove ,Vm::vm_id(), IPRange::iprange_id()} |
         {vm, nic, primary ,Vm::vm_id(), MAC::binary()}.
@@ -291,7 +291,7 @@
         {hypervisor, set, Hypervisor::hypervisor(), Resource::binary(), Value::value() | delete} |
         {hypervisor, set, Hypervisor::hypervisor(), Resources::config_list()} |
         {hypervisor, list} |
-        {hypervisor, list, Requirements::[matcher()]}.
+        {hypervisor, list, Requirements::[matcher()], Full::boolean()}.
 
 -type sniffle_dataset_message() ::
         {dataset, create, Dataset::binary()} |
@@ -301,7 +301,7 @@
         {dataset, set, Dataset::binary(), Attribute::keys(), Value::value() | delete} |
         {dataset, set, Dataset::binary(), Attributes::attr_list()} |
         {dataset, list} |
-        {dataset, list, Requirements::[matcher()]}.
+        {dataset, list, Requirements::[matcher()], Full::boolean()}.
 
 -type sniffle_image_message() ::
         {img, create, Img::dataset_id(), Idx::integer(), Data::binary()} |
@@ -320,7 +320,7 @@
         {network, set, Network::binary(), Attribute::keys(), Value::value() | delete} |
         {network, set, Network::binary(), Attributes::attr_list()} |
         {network, list} |
-        {network, list, Requirements::[matcher()]}.
+        {network, list, Requirements::[matcher()], Full::boolean()}.
 
 -type sniffle_iprange_message() ::
         {iprange, create,
@@ -337,7 +337,7 @@
         {iprange, release, Iprange::iprange_id(), Ip::integer()} |
         {iprange, claim, Iprange::iprange_id()} |
         {iprange, list} |
-        {iprange, list, Requirements::[matcher()]} |
+        {iprange, list, Requirements::[matcher()], Full::boolean()} |
         {iprange, set, Iprange::iprange_id(), Attribute::keys(), Value::value() | delete} |
         {iprange, set, Iprange::iprange_id(), Attributes::attr_list()}.
 
@@ -348,7 +348,7 @@
         {package, set, Package::package_id(), Attribute::keys(), Value::value() | delete} |
         {package, set, Package::package_id(), Attributes::attr_list()} |
         {package, list} |
-        {package, list, Requirements::[matcher()]}.
+        {package, list, Requirements::[matcher()], Full::boolean()}.
 
 %%%===================================================================
 %%%  Snarl
@@ -356,9 +356,10 @@
 
 -type snarl_message() ::
         version |
+        {cloud, status} |
         {token, delete, Token::token()} |
         {user, list} |
-        {user, list, Requirements::[matcher()]} |
+        {user, list, Requirements::[matcher()], Full::boolean()} |
         {user, get, User::user_token_id()} |
         {user, set, User::user_id(), Attribute::keys(), Value::value() | delete} |
         {user, set, User::user_id(), Attributes::attr_list()} |
@@ -367,6 +368,7 @@
         {user, add, UserName::binary()} |
         {user, add, Creator::user_id(), UserName::binary()} |
         {user, auth, UserName::binary(), Pass::binary()} |
+        {user, auth, UserName::binary(), Pass::binary(), basic | binary()} |
         {user, allowed, User::user_token_id(), Permission::permission()} |
         {user, delete, User::user_id()} |
         {user, passwd, User::user_id(), Pass::binary()} |
@@ -383,12 +385,15 @@
         {user, keys, add, User::user_id(), KeyID::binary(), Key::binary()} |
         {user, keys, revoke, User::user_id(), KeyID::binary()} |
         {user, keys, get, User::user_id()} |
+        {user, yubikeys, add, User::user_id(), binary()} |
+        {user, yubikeys, remove, User::user_id(),binary()} |
+        {user, yubikeys, get, User::user_id()} |
         {user, org, join, User::user_id(), Org::org_id()} |
         {user, org, leave, User::user_id(), Org::group_id()} |
         {user, org, active, User::user_id()} |
         {user, org, select, User::user_id(), Org::org_id()} |
         {group, list} |
-        {group, list, Requirements::[matcher()]} |
+        {group, list, Requirements::[matcher()], Full::boolean(), Full::boolean()} |
         {group, get, Group::group_id()} |
         {group, set, Group::group_id(), Attribute::keys(), Value::value() | delete} |
         {group, set, Group::group_id(), Attributes::attr_list()} |
@@ -398,7 +403,7 @@
         {group, revoke_prefix, Group::group_id(), Permission::permission()} |
         {group, revoke, Group::group_id(), Permission::permission()} |
         {org, list} |
-        {org, list, Requirements::[matcher()]} |
+        {org, list, Requirements::[matcher()], Full::boolean()} |
         {org, get, Org::org_id()} |
         {org, set, Org::org_id(), Attribute::keys(), Value::value() | delete} |
         {org, set, Org::org_id(), Attributes::attr_list()} |
