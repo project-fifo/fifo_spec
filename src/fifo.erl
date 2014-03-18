@@ -316,6 +316,8 @@
         {hypervisor, get, Hypervisor::hypervisor()} |
         {hypervisor, set, Hypervisor::hypervisor(), Resource::binary(), Value::value() | delete} |
         {hypervisor, set, Hypervisor::hypervisor(), Resources::config_list()} |
+        {hypervisor, service, Hypervisor::hypervisor(),
+         Action::enable|disable|clear, Service::binary()} |
         {hypervisor, list} |
         {hypervisor, list, Requirements::[matcher()], Full::boolean()}.
 
