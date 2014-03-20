@@ -222,6 +222,10 @@
         {machines, snapshot, rollback, UUID::vm_id(), SnapID::uuid()} |
         {machines, snapshot, store, UUID::vm_id(), SnapID::uuid(),
          ImgID::uuid()} |
+        {machines, snapshot, store, UUID::vm_id(), SnapId::uuid(), Img::uuid(),
+         Host::inet:ip_address() | inet:hostname(), Port::inet:port_number(),
+         Bucket::binary(), AKey::binary(), SKey::binary(),
+         Opts::[proplists:property()]} |
         {machines, backup, UUID::vm_id(), BackupID::uuid(),
          Opts::[backup_opt()]} |
         {machines, backup, restore, UUID::vm_id(), BackupID::uuid(),
