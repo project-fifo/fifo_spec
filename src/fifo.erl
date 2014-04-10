@@ -25,8 +25,8 @@
 
 -export_type([user/0,
               user_id/0,
-              group/0,
-              group_id/0,
+              role/0,
+              role_id/0,
               org/0,
               org_id/0,
               user_token_id/0,
@@ -78,7 +78,7 @@
 -type user_id() :: uuid().
 -type org_id() :: uuid().
 -type user_token_id() :: user_id() | {token, Token::token()}.
--type group_id() :: uuid().
+-type role_id() :: uuid().
 -type resource_id() :: uuid().
 -type dataset_id() :: uuid().
 -type package_id() :: uuid().
@@ -90,7 +90,7 @@
 
 -type log() :: {{integer(), integer(), integer()}, term()}.
 
--type group() :: object().
+-type role() :: object().
 
 -type user() :: object().
 
@@ -405,8 +405,8 @@
         {user, allowed, User::user_token_id(), Permission::permission()} |
         {user, delete, User::user_id()} |
         {user, passwd, User::user_id(), Pass::binary()} |
-        {user, join, User::user_id(), Group::group_id()} |
-        {user, leave, User::user_id(), Group::group_id()} |
+        {user, join, User::user_id(), Role::role_id()} |
+        {user, leave, User::user_id(), Role::role_id()} |
         {user, grant, User::user_id(), Permission::permission()} |
         {user, revoke, User::user_id(), Permission::permission()} |
         {user, revoke_prefix, User::user_id(), Permission::permission()} |
@@ -422,19 +422,19 @@
         {user, yubikeys, remove, User::user_id(),binary()} |
         {user, yubikeys, get, User::user_id()} |
         {user, org, join, User::user_id(), Org::org_id()} |
-        {user, org, leave, User::user_id(), Org::group_id()} |
+        {user, org, leave, User::user_id(), Org::role_id()} |
         {user, org, active, User::user_id()} |
         {user, org, select, User::user_id(), Org::org_id()} |
-        {group, list} |
-        {group, list, Requirements::[matcher()], Full::boolean()} |
-        {group, get, Group::group_id()} |
-        {group, set, Group::group_id(), Attribute::keys(), Value::value() | delete} |
-        {group, set, Group::group_id(), Attributes::attr_list()} |
-        {group, add, GroupName::binary()} |
-        {group, delete, Group::group_id()} |
-        {group, grant, Group::group_id(), Permission::permission()} |
-        {group, revoke_prefix, Group::group_id(), Permission::permission()} |
-        {group, revoke, Group::group_id(), Permission::permission()} |
+        {role, list} |
+        {role, list, Requirements::[matcher()], Full::boolean()} |
+        {role, get, Role::role_id()} |
+        {role, set, Role::role_id(), Attribute::keys(), Value::value() | delete} |
+        {role, set, Role::role_id(), Attributes::attr_list()} |
+        {role, add, RoleName::binary()} |
+        {role, delete, Role::role_id()} |
+        {role, grant, Role::role_id(), Permission::permission()} |
+        {role, revoke_prefix, Role::role_id(), Permission::permission()} |
+        {role, revoke, Role::role_id(), Permission::permission()} |
         {org, list} |
         {org, list, Requirements::[matcher()], Full::boolean()} |
         {org, get, Org::org_id()} |
