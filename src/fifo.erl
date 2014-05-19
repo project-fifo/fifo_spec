@@ -302,6 +302,7 @@
         {vm, snapshot, promote, Vm::vm_id(),
          SnapUUID::uuid(), Dataset::config()} |
         {vm, create, Package::binary(), Dataset::binary(), Config::config()} |
+        {vm, dry_run, Package::binary(), Dataset::binary(), Config::config()} |
         {vm, update, Vm::vm_id(),
          Package::package_id() | undefined, Config::config()} |
         {vm, unregister, Vm::vm_id()} |
