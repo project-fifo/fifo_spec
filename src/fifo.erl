@@ -58,6 +58,9 @@
 -export_type([vm/0,
               vm_id/0]).
 
+-export_type([grouping_type/0,
+              grouping_id/0]).
+
 -export_type([write_fsm_reply/0,
               read_fsm_reply/0,
               coverage_fsm_reply/0]).
@@ -73,18 +76,21 @@
 
 -type jsxarray()::[value()].
 
--type hypervisor_id() :: binary().
--type vm_id() :: uuid().
--type user_id() :: uuid().
--type org_id() :: uuid().
--type user_token_id() :: user_id() | {token, Token::token()}.
--type role_id() :: uuid().
--type resource_id() :: uuid().
 -type dataset_id() :: uuid().
--type package_id() :: uuid().
+-type dtrace_id() :: uuid().
+-type grouping_id() :: uuid().
+-type hypervisor_id() :: binary().
 -type iprange_id() :: uuid().
 -type network_id() :: uuid().
--type dtrace_id() :: uuid().
+-type org_id() :: uuid().
+-type package_id() :: uuid().
+-type resource_id() :: uuid().
+-type role_id() :: uuid().
+-type user_id() :: uuid().
+-type user_token_id() :: user_id() | {token, Token::token()}.
+-type vm_id() :: uuid().
+
+-type grouping_type() :: cluster | stack | none.
 
 -type trigger() :: term().
 
@@ -211,6 +217,7 @@
         version |
         update |
         {lock, LockID::binary()} |
+        {release, LockID::binary()} |
         {machines, start, UUID::vm_id()} |
         {machines, start, UUID::vm_id(), Image::binary()} |
         {machines, stop, UUID::vm_id()} |
@@ -253,14 +260,15 @@
         ping |
         version |
         {cloud, status} |
-        sniffle_dtrace_message() |
-        sniffle_vm_messages() |
-        sniffle_hypervisor_messages() |
         sniffle_dataset_message() |
+        sniffle_dtrace_message() |
+        sniffle_grouping_message() |
+        sniffle_hypervisor_messages() |
         sniffle_image_message() |
         sniffle_iprange_message() |
         sniffle_network_message() |
-        sniffle_package_message().
+        sniffle_package_message() |
+        sniffle_vm_messages().
 
 -type sniffle_dtrace_message() ::
         {dtrace, add, Name::binary(), Script::string()} |
@@ -382,6 +390,18 @@
         {package, set, Package::package_id(), Attributes::attr_list()} |
         {package, list} |
         {package, list, Requirements::[matcher()], Full::boolean()}.
+
+
+-type sniffle_grouping_message() ::
+        {grouping, add, GroupingName::binary(), Type::grouping_type()} |
+        {grouping, delete, Grouping::grouping_id()} |
+        {grouping, get, Grouping::grouping_id()} |
+        {grouping, metadata, set, Grouping::grouping_id(), Attribute::keys(), Value::value() | delete} |
+        {grouping, metadata, set, Grouping::grouping_id(), Attributes::attr_list()} |
+        {grouping, element, add | remove, Grouping::grouping_id(), Element::grouping_id()| vm_id()} |
+        {grouping, grouping, add | remove, Grouping::grouping_id(), Parent::grouping_id()} |
+        {grouping, list} |
+        {grouping, list, Requirements::[matcher()], Full::boolean()}.
 
 %%%===================================================================
 %%%  Snarl
