@@ -7,13 +7,6 @@
               object/0,
               config/0,
               package/0,
-              dataset/0,
-              dataset_id/0,
-              dtrace_id/0,
-              package_id/0,
-              iprange_id/0,
-              network/0,
-              network_id/0,
               vm_config/0,
               vm_type/0,
               vm_state/0,
@@ -22,6 +15,23 @@
               value/0,
               matcher/0,
               uuid/0]).
+
+-export_type([
+              dataset/0,
+              dataset_id/0,
+              dtrace_id/0,
+              dtrace/0,
+              grouping_id/0,
+              grouping/0,
+              hypervisor/0,
+              hypervisor_id/0,
+              iprange/0,
+              iprange_id/0,
+              network/0,
+              network_id/0,
+              package/0,
+              package_id/0
+             ]).
 
 -export_type([user/0,
               user_id/0,
@@ -52,14 +62,7 @@
               chunter_message/0,
               snarl_message/0]).
 
--export_type([hypervisor/0,
-              hypervisor_id/0]).
 
--export_type([vm/0,
-              vm_id/0]).
-
--export_type([grouping_type/0,
-              grouping_id/0]).
 
 -export_type([write_fsm_reply/0,
               read_fsm_reply/0,
@@ -76,19 +79,9 @@
 
 -type jsxarray()::[value()].
 
--type dataset_id() :: uuid().
--type dtrace_id() :: uuid().
--type grouping_id() :: uuid().
--type hypervisor_id() :: binary().
--type iprange_id() :: uuid().
--type network_id() :: uuid().
--type org_id() :: uuid().
--type package_id() :: uuid().
 -type resource_id() :: uuid().
--type role_id() :: uuid().
--type user_id() :: uuid().
+
 -type user_token_id() :: user_id() | {token, Token::token()}.
--type vm_id() :: uuid().
 -type realm() :: binary().
 
 -type grouping_type() :: cluster | stack | none.
@@ -97,13 +90,31 @@
 
 -type log() :: {{integer(), integer(), integer()}, term()}.
 
--type role() :: object().
+%% Types for the different FiFo datasets
+-type dataset() :: ft_dataset:dataset().
+-type dataset_id() :: uuid().
+-type dtrace_id() :: uuid().
+-type dtrace() :: ft_dtrace:dtrace().
+-type grouping_id() :: uuid().
+-type grouping() :: ft_grouping:grouping().
+-type hypervisor() :: ft_hypervisor:hypervisor().
+-type hypervisor_id() :: uuid().
+-type iprange() :: ft_iprange:iprange().
+-type iprange_id() :: uuid().
+-type network() :: ft_netwokr:network().
+-type network_id() :: uuid().
+-type package() :: ft_package:ft_package().
+-type package_id() :: uuid().
+-type vm() :: ft_vm:vm().
+-type vm_id() :: uuid().
 
--type user() :: object().
 
--type org() :: object().
-
--type network() :: object().
+-type org() :: ft_org:org().
+-type org_id() :: uuid().
+-type role() :: ft_role:role().
+-type role_id() :: uuid().
+-type user() :: ft_user:user().
+-type user_id() :: uuid().
 
 -type token() :: uuid().
 
@@ -125,14 +136,6 @@
          Id :: uuid(),
          Ammount :: number()}.
 
--type vm() ::
-        {vm,
-         UUID :: vm_id(),
-         Alias :: binary(),
-         Hypervisor :: hypervisor_id(),
-         Log :: [log()],
-         Attributes :: dict()
-        }.
 
 -type permission() ::
         [binary() | '_' | '...'].
@@ -173,15 +176,9 @@
 -type attr_list() :: [{Key::keys(),
                        Value::value()}].
 
--type hypervisor() :: object().
-
 -type vm_config() :: object().
 
 -type config() :: object().
-
--type package() :: ft_package:ft_package().
-
--type dataset() :: object().
 
 -type uuid() :: <<_:288>>.
 
