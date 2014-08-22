@@ -6,7 +6,6 @@
               keys/0,
               object/0,
               config/0,
-              package/0,
               vm_config/0,
               vm_type/0,
               vm_state/0,
@@ -30,7 +29,9 @@
               network/0,
               network_id/0,
               package/0,
-              package_id/0
+              package_id/0,
+              vm/0,
+              vm_id/0
              ]).
 
 -export_type([user/0,
