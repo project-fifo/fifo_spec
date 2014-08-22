@@ -61,7 +61,11 @@
 -export_type([sniffle_message/0,
               howl_message/0,
               chunter_message/0,
-              snarl_message/0]).
+              snarl_message/0,
+              snarl_user_message/0,
+              snarl_role_message/0,
+              snarl_org_message/0
+             ]).
 
 
 
@@ -411,6 +415,11 @@
         version |
         {cloud, status, Realm::realm()} |
         {token, delete, Realm::realm(), Token::token()} |
+        {user, auth, Realm::realm(), UserName::binary(), Pass::binary()} |
+        {user, auth, Realm::realm(), UserName::binary(), Pass::binary(), basic | binary()} |
+        {user, allowed, Realm::realm(), User::user_token_id(), Permission::permission()}.
+
+-type snarl_user_message() ::
         {user, list, Realm::realm()} |
         {user, list, Realm::realm(), Requirements::[matcher()], Full::boolean()} |
         {user, get, Realm::realm(), User::user_token_id()} |
@@ -420,9 +429,6 @@
         {user, cache, Realm::realm(), User::user_token_id()} |
         {user, add, Realm::realm(), UserName::binary()} |
         {user, add, Realm::realm(), Creator::user_id(), UserName::binary()} |
-        {user, auth, Realm::realm(), UserName::binary(), Pass::binary()} |
-        {user, auth, Realm::realm(), UserName::binary(), Pass::binary(), basic | binary()} |
-        {user, allowed, Realm::realm(), User::user_token_id(), Permission::permission()} |
         {user, delete, Realm::realm(), User::user_id()} |
         {user, passwd, Realm::realm(), User::user_id(), Pass::binary()} |
         {user, join, Realm::realm(), User::user_id(), Role::role_id()} |
@@ -444,7 +450,9 @@
         {user, org, join, Realm::realm(), User::user_id(), Org::org_id()} |
         {user, org, leave, Realm::realm(), User::user_id(), Org::role_id()} |
         {user, org, active, Realm::realm(), User::user_id()} |
-        {user, org, select, Realm::realm(), User::user_id(), Org::org_id()} |
+        {user, org, select, Realm::realm(), User::user_id(), Org::org_id()}.
+
+-type snarl_role_message() ::
         {role, list, Realm::realm()} |
         {role, list, Realm::realm(), Requirements::[matcher()], Full::boolean()} |
         {role, get, Realm::realm(), Role::role_id()} |
@@ -454,17 +462,16 @@
         {role, delete, Realm::realm(), Role::role_id()} |
         {role, grant, Realm::realm(), Role::role_id(), Permission::permission()} |
         {role, revoke_prefix, Realm::realm(), Role::role_id(), Permission::permission()} |
-        {role, revoke, Realm::realm(), Role::role_id(), Permission::permission()} |
+        {role, revoke, Realm::realm(), Role::role_id(), Permission::permission()}.
+
+-type snarl_org_message() ::
         {org, list, Realm::realm()} |
         {org, list, Realm::realm(), Requirements::[matcher()], Full::boolean()} |
         {org, get, Realm::realm(), Org::org_id()} |
         {org, set, Realm::realm(), Org::org_id(), Attribute::keys(), Value::value() | delete} |
         {org, set, Realm::realm(), Org::org_id(), Attributes::attr_list()} |
         {org, add, Realm::realm(), OrgName::binary()} |
-        {org, delete, Realm::realm(), Org::org_id()} |
-        {org, trigger, add, Realm::realm(), Org::org_id(), Trigger::trigger()} |
-        {org, trigger, remove, Realm::realm(), Org::org_id(), Trigger::trigger()} |
-        {org, trigger, execute, Realm::realm(), Org::org_id(), Trigger::trigger(), Payload::term()}.
+        {org, delete, Realm::realm(), Org::org_id()}.
 
 -type write_fsm_reply() ::
         not_found | ok | {error, timeout} | {ok, term()}.
