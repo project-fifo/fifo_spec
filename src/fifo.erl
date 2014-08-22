@@ -411,7 +411,7 @@
 
 -type snarl_message() ::
         version |
-        {cloud, status} |
+        {cloud, status, Realm::realm()} |
         {token, Realm::realm(), delete, Token::token()} |
         {user, Realm::realm(), list} |
         {user, Realm::realm(), list, Requirements::[matcher()], Full::boolean()} |
