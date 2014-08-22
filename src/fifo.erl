@@ -179,7 +179,7 @@
 
 -type config() :: object().
 
--type package() :: object().
+-type package() :: ft_package:ft_package().
 
 -type dataset() :: object().
 
