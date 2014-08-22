@@ -412,7 +412,7 @@
 -type snarl_message() ::
         version |
         {cloud, status, Realm::realm()} |
-        {token, delete, , Realm::realm()Token::token()} |
+        {token, delete, Realm::realm(), Token::token()} |
         {user, list, Realm::realm()} |
         {user, list, Realm::realm(), Requirements::[matcher()], Full::boolean()} |
         {user, get, Realm::realm(), User::user_token_id()} |
@@ -462,7 +462,7 @@
         {org, get, Realm::realm(), Org::org_id()} |
         {org, set, Realm::realm(), Org::org_id(), Attribute::keys(), Value::value() | delete} |
         {org, set, Realm::realm(), Org::org_id(), Attributes::attr_list()} |
-        {org, ad, Realm::realm()d, OrgName::binary()} |
+        {org, add, Realm::realm(), OrgName::binary()} |
         {org, delete, Realm::realm(), Org::org_id()} |
         {org, trigger, add, Realm::realm(), Org::org_id(), Trigger::trigger()} |
         {org, trigger, remove, Realm::realm(), Org::org_id(), Trigger::trigger()} |
