@@ -412,61 +412,61 @@
 -type snarl_message() ::
         version |
         {cloud, status, Realm::realm()} |
-        {token, Realm::realm(), delete, Token::token()} |
-        {user, Realm::realm(), list} |
-        {user, Realm::realm(), list, Requirements::[matcher()], Full::boolean()} |
-        {user, Realm::realm(), get, User::user_token_id()} |
-        {user, Realm::realm(), set, User::user_id(), Attribute::keys(), Value::value() | delete} |
-        {user, Realm::realm(), set, User::user_id(), Attributes::attr_list()} |
-        {user, Realm::realm(), lookup, UserName::binary()} |
-        {user, Realm::realm(), cache, User::user_token_id()} |
-        {user, Realm::realm(), add, UserName::binary()} |
-        {user, Realm::realm(), add, Creator::user_id(), UserName::binary()} |
-        {user, Realm::realm(), auth, UserName::binary(), Pass::binary()} |
-        {user, Realm::realm(), auth, UserName::binary(), Pass::binary(), basic | binary()} |
-        {user, Realm::realm(), allowed, User::user_token_id(), Permission::permission()} |
-        {user, Realm::realm(), delete, User::user_id()} |
-        {user, Realm::realm(), passwd, User::user_id(), Pass::binary()} |
-        {user, Realm::realm(), join, User::user_id(), Role::role_id()} |
-        {user, Realm::realm(), leave, User::user_id(), Role::role_id()} |
-        {user, Realm::realm(), grant, User::user_id(), Permission::permission()} |
-        {user, Realm::realm(), revoke, User::user_id(), Permission::permission()} |
-        {user, Realm::realm(), revoke_prefix, User::user_id(), Permission::permission()} |
-        {user, Realm::realm(), set_resource, User::user_id(), Resource::binary(), Value::value()} |
-        {user, Realm::realm(), claim_resource, User::user_id(), Resource::binary(), Ammount::number()} |
-        {user, Realm::realm(), free_resource, User::user_id(), Resource::binary(), ID::uuid()} |
-        {user, Realm::realm(), resource_stat, User::user_id()} |
-        {user, Realm::realm(), keys, find, KeyID::binary()} |
-        {user, Realm::realm(), keys, add, User::user_id(), KeyID::binary(), Key::binary()} |
-        {user, Realm::realm(), keys, revoke, User::user_id(), KeyID::binary()} |
-        {user, Realm::realm(), keys, get, User::user_id()} |
-        {user, Realm::realm(), yubikeys, add, User::user_id(), binary()} |
-        {user, Realm::realm(), yubikeys, remove, User::user_id(),binary()} |
-        {user, Realm::realm(), yubikeys, get, User::user_id()} |
-        {user, Realm::realm(), org, join, User::user_id(), Org::org_id()} |
-        {user, Realm::realm(), org, leave, User::user_id(), Org::role_id()} |
-        {user, Realm::realm(), org, active, User::user_id()} |
-        {user, Realm::realm(), org, select, User::user_id(), Org::org_id()} |
-        {role, Realm::realm(), list} |
-        {role, Realm::realm(), list, Requirements::[matcher()], Full::boolean()} |
-        {role, Realm::realm(), get, Role::role_id()} |
-        {role, Realm::realm(), set, Role::role_id(), Attribute::keys(), Value::value() | delete} |
-        {role, Realm::realm(), set, Role::role_id(), Attributes::attr_list()} |
-        {role, Realm::realm(), add, RoleName::binary()} |
-        {role, Realm::realm(), delete, Role::role_id()} |
-        {role, Realm::realm(), grant, Role::role_id(), Permission::permission()} |
-        {role, Realm::realm(), revoke_prefix, Role::role_id(), Permission::permission()} |
-        {role, Realm::realm(), revoke, Role::role_id(), Permission::permission()} |
-        {org, Realm::realm(), list} |
-        {org, Realm::realm(), list, Requirements::[matcher()], Full::boolean()} |
-        {org, Realm::realm(), get, Org::org_id()} |
-        {org, Realm::realm(), set, Org::org_id(), Attribute::keys(), Value::value() | delete} |
-        {org, Realm::realm(), set, Org::org_id(), Attributes::attr_list()} |
-        {org, Realm::realm(), add, OrgName::binary()} |
-        {org, Realm::realm(), delete, Org::org_id()} |
-        {org, Realm::realm(), trigger, add, Org::org_id(), Trigger::trigger()} |
-        {org, Realm::realm(), trigger, remove, Org::org_id(), Trigger::trigger()} |
-        {org, Realm::realm(), trigger, execute, Org::org_id(), Trigger::trigger(), Payload::term()}.
+        {token, delete, , Realm::realm()Token::token()} |
+        {user, list, Realm::realm()} |
+        {user, list, Realm::realm(), Requirements::[matcher()], Full::boolean()} |
+        {user, get, Realm::realm(), User::user_token_id()} |
+        {user, set, Realm::realm(), User::user_id(), Attribute::keys(), Value::value() | delete} |
+        {user, set, Realm::realm(), User::user_id(), Attributes::attr_list()} |
+        {user, lookup, Realm::realm(), UserName::binary()} |
+        {user, cache, Realm::realm(), User::user_token_id()} |
+        {user, add, Realm::realm(), UserName::binary()} |
+        {user, add, Realm::realm(), Creator::user_id(), UserName::binary()} |
+        {user, auth, Realm::realm(), UserName::binary(), Pass::binary()} |
+        {user, auth, Realm::realm(), UserName::binary(), Pass::binary(), basic | binary()} |
+        {user, allowed, Realm::realm(), User::user_token_id(), Permission::permission()} |
+        {user, delete, Realm::realm(), User::user_id()} |
+        {user, passwd, Realm::realm(), User::user_id(), Pass::binary()} |
+        {user, join, Realm::realm(), User::user_id(), Role::role_id()} |
+        {user, leave, Realm::realm(), User::user_id(), Role::role_id()} |
+        {user, grant, Realm::realm(), User::user_id(), Permission::permission()} |
+        {user, revoke, Realm::realm(), User::user_id(), Permission::permission()} |
+        {user, revoke_prefix, Realm::realm(), User::user_id(), Permission::permission()} |
+        {user, set_resource, Realm::realm(), User::user_id(), Resource::binary(), Value::value()} |
+        {user, claim_resource, Realm::realm(), User::user_id(), Resource::binary(), Ammount::number()} |
+        {user, free_resource, Realm::realm(), User::user_id(), Resource::binary(), ID::uuid()} |
+        {user, resource_stat, Realm::realm(), User::user_id()} |
+        {user, keys, find, Realm::realm(), KeyID::binary()} |
+        {user, keys, add, Realm::realm(), User::user_id(), KeyID::binary(), Key::binary()} |
+        {user, keys, revoke, Realm::realm(), User::user_id(), KeyID::binary()} |
+        {user, keys, get, Realm::realm(), User::user_id()} |
+        {user, yubikeys, add, Realm::realm(), User::user_id(), binary()} |
+        {user, yubikeys, remove, Realm::realm(), User::user_id(),binary()} |
+        {user, yubikeys, get, Realm::realm(), User::user_id()} |
+        {user, org, join, Realm::realm(), User::user_id(), Org::org_id()} |
+        {user, org, leave, Realm::realm(), User::user_id(), Org::role_id()} |
+        {user, org, active, Realm::realm(), User::user_id()} |
+        {user, org, select, Realm::realm(), User::user_id(), Org::org_id()} |
+        {role, list, Realm::realm()} |
+        {role, list, Realm::realm(), Requirements::[matcher()], Full::boolean()} |
+        {role, get, Realm::realm(), Role::role_id()} |
+        {role, set, Realm::realm(), Role::role_id(), Attribute::keys(), Value::value() | delete} |
+        {role, set, Realm::realm(), Role::role_id(), Attributes::attr_list()} |
+        {role, add, Realm::realm(), RoleName::binary()} |
+        {role, delete, Realm::realm(), Role::role_id()} |
+        {role, grant, Realm::realm(), Role::role_id(), Permission::permission()} |
+        {role, revoke_prefix, Realm::realm(), Role::role_id(), Permission::permission()} |
+        {role, revoke, Realm::realm(), Role::role_id(), Permission::permission()} |
+        {org, list, Realm::realm()} |
+        {org, list, Realm::realm(), Requirements::[matcher()], Full::boolean()} |
+        {org, get, Realm::realm(), Org::org_id()} |
+        {org, set, Realm::realm(), Org::org_id(), Attribute::keys(), Value::value() | delete} |
+        {org, set, Realm::realm(), Org::org_id(), Attributes::attr_list()} |
+        {org, ad, Realm::realm()d, OrgName::binary()} |
+        {org, delete, Realm::realm(), Org::org_id()} |
+        {org, trigger, add, Realm::realm(), Org::org_id(), Trigger::trigger()} |
+        {org, trigger, remove, Realm::realm(), Org::org_id(), Trigger::trigger()} |
+        {org, trigger, execute, Realm::realm(), Org::org_id(), Trigger::trigger(), Payload::term()}.
 
 -type write_fsm_reply() ::
         not_found | ok | {error, timeout} | {ok, term()}.
