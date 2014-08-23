@@ -60,6 +60,15 @@
               permission_comparer/0]).
 
 -export_type([sniffle_message/0,
+              sniffle_dataset_message/0,
+              sniffle_dtrace_message/0,
+              sniffle_grouping_message/0,
+              sniffle_hypervisor_messages/0,
+              sniffle_image_message/0,
+              sniffle_iprange_message/0,
+              sniffle_network_message/0,
+              sniffle_package_message/0,
+              sniffle_vm_messages/0,
               howl_message/0,
               chunter_message/0,
               snarl_message/0,
@@ -284,6 +293,11 @@
         {dtrace, attribute, set, ID::dtrace_id(),
          Attribute::keys(), Value::value() | delete} |
         {dtrace, attribute, set, ID::dtrace_id(), Attributes::attr_list()} |
+        {dtrace, name, ID::dtrace_id(), binary()} |
+        {dtrace, uuid, ID::dtrace_id(), binary()} |
+        {dtrace, script, ID::dtrace_id(), string()} |
+        {dtrace, set_metadata, ID::dtrace_id(), [{jsxd:key(), jsxd:value()}]} |
+        {dtrace, set_config, ID::dtrace_id(), [{jsxd:key(), jsxd:value()}]} |
         {dtrace, run, ID::dtrace_id(), Servers::[hypervisor()]}.
 
 -type sniffle_vm_messages() ::
@@ -340,13 +354,27 @@
         {hypervisor, list, Requirements::[matcher()], Full::boolean()}.
 
 -type sniffle_dataset_message() ::
-        {dataset, create, Dataset::binary()} |
+        {dataset, create, Dataset::dataset_id()} |
         {dataset, delete, Dataset::dataset_id()} |
-        {dataset, import, URL::binary()} |
-        {dataset, get, Dataset::binary()} |
-        {dataset, set, Dataset::binary(), Attribute::keys(), Value::value() | delete} |
-        {dataset, set, Dataset::binary(), Attributes::attr_list()} |
+        {dataset, import, URL::dataset_id()} |
+        {dataset, get, Dataset::dataset_id()} |
+        {dataset, set, Dataset::dataset_id(), Attribute::keys(), Value::value() | delete} |
+        {dataset, set, Dataset::dataset_id(), Attributes::attr_list()} |
         {dataset, list} |
+        {dataset, status, Dataset::dataset_id(), binary()} |
+        {dataset, imported, Dataset::dataset_id(), float() | non_neg_integer()} |
+        {dataset, description, Dataset::dataset_id(), binary()} |
+        {dataset, disk_driver, Dataset::dataset_id(), binary()} |
+        {dataset, homepage, Dataset::dataset_id(), binary()} |
+        {dataset, image_size, Dataset::dataset_id(), non_neg_integer()} |
+        {dataset, name, Dataset::dataset_id(), binary()} |
+        {dataset, networks, Dataset::dataset_id(), list()} |
+        {dataset, nic_driver, Dataset::dataset_id(), binary()} |
+        {dataset, os, Dataset::dataset_id(), binary()} |
+        {dataset, type, Dataset::dataset_id(), kvm | zone} |
+        {dataset, users, Dataset::dataset_id(), list()} |
+        {dataset, version, Dataset::dataset_id(), binary()} |
+        {dataset, set_metadata, Dataset::dataset_id(), [{jsxd:key(), jsxd:value()}]} |
         {dataset, list, Requirements::[matcher()], Full::boolean()}.
 
 -type sniffle_image_message() ::
