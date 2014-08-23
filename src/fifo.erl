@@ -13,7 +13,8 @@
               log/0,
               value/0,
               matcher/0,
-              uuid/0]).
+              uuid/0,
+              obj/0]).
 
 -export_type([
               dataset/0,
@@ -106,13 +107,14 @@
 -type hypervisor_id() :: uuid().
 -type iprange() :: ft_iprange:iprange().
 -type iprange_id() :: uuid().
--type network() :: ft_netwokr:network().
+-type network() :: ft_network:network().
 -type network_id() :: uuid().
--type package() :: ft_package:ft_package().
+-type package() :: ft_package:package().
 -type package_id() :: uuid().
 -type vm() :: ft_vm:vm().
 -type vm_id() :: uuid().
 
+-type obj() :: ft_obj:obj().
 
 -type org() :: ft_org:org().
 -type org_id() :: uuid().
