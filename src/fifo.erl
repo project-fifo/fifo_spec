@@ -286,9 +286,6 @@
         {dtrace, get, ID::dtrace_id()} |
         {dtrace, list} |
         {dtrace, list, Requreiments::[matcher()], Full::boolean()} |
-        {dtrace, attribute, set, ID::dtrace_id(),
-         Attribute::keys(), Value::value() | delete} |
-        {dtrace, attribute, set, ID::dtrace_id(), Attributes::attr_list()} |
         {dtrace, name, ID::dtrace_id(), binary()} |
         {dtrace, uuid, ID::dtrace_id(), binary()} |
         {dtrace, script, ID::dtrace_id(), string()} |
@@ -328,8 +325,6 @@
         {vm, reboot, Vm::vm_id()} |
         {vm, stop, force, Vm::vm_id()} |
         {vm, reboot, force, Vm::vm_id()} |
-        {vm, set, Vm::vm_id(), Attribute::keys(), Value::value() | delete} |
-        {vm, set, Vm::vm_id(), Attributes::attr_list()} |
         {vm, list} |
         {vm, list, Requirements::[matcher()], Full::boolean()} |
         {vm, nic, add, Vm::vm_id(), IPRange::iprange_id()} |
@@ -367,8 +362,6 @@
         {dataset, delete, Dataset::dataset_id()} |
         {dataset, import, URL::dataset_id()} |
         {dataset, get, Dataset::dataset_id()} |
-        {dataset, set, Dataset::dataset_id(), Attribute::keys(), Value::value() | delete} |
-        {dataset, set, Dataset::dataset_id(), Attributes::attr_list()} |
         {dataset, list} |
         {dataset, status, Dataset::dataset_id(), binary()} |
         {dataset, imported, Dataset::dataset_id(), float() | non_neg_integer()} |
@@ -396,13 +389,14 @@
         {img, list, Img::dataset_id()}.
 
 -type sniffle_network_message() ::
-        {network, create, Network::binary()} |
-        {network, delete, Network::network_id()} |
-        {network, add_iprange, Network::network_id(), Iprange::iprange_id()} |
-        {network, remove_iprange, Network::network_id(), Iprange::iprange_id()} |
-        {network, get, Network::binary()} |
-        {network, set, Network::binary(), Attribute::keys(), Value::value() | delete} |
-        {network, set, Network::binary(), Attributes::attr_list()} |
+        {network, create, binary()} |
+        {network, delete, network_id()} |
+        {network, add_iprange, network_id(), iprange_id()} |
+        {network, remove_iprange, network_id(), iprange_id()} |
+        {network, get, network_id()} |
+        {network, uuid, network_id(), binary()} |
+        {network, name, network_id(), binary()} |
+        {network, set_metadata, iprange_id(), attr_list()} |
         {network, list} |
         {network, list, Requirements::[matcher()], Full::boolean()}.
 
@@ -421,27 +415,34 @@
         {iprange, release, Iprange::iprange_id(), Ip::integer()} |
         {iprange, claim, Iprange::iprange_id()} |
         {iprange, list} |
-        {iprange, list, Requirements::[matcher()], Full::boolean()} |
-        {iprange, set, Iprange::iprange_id(), Attribute::keys(), Value::value() | delete} |
-        {iprange, set, Iprange::iprange_id(), Attributes::attr_list()}.
+        {iprange, name, iprange_id(), binary()} |
+        {iprange, uuid, iprange_id(), binary()} |
+        {iprange, network, iprange_id(), non_neg_integer()} |
+        {iprange, netmask, iprange_id(), non_neg_integer()} |
+        {iprange, gateway, iprange_id(), non_neg_integer()} |
+        {iprange, set_metadata, iprange_id(), attr_list()} |
+        {iprange, tag, iprange_id(), non_neg_integer()} |
+        {iprange, vlan, iprange_id(), non_neg_integer()} |
+
+        {iprange, list, Requirements::[matcher()], Full::boolean()}.
 
 -type sniffle_package_message() ::
         {package, create, PackageName::binary()} |
-        {package, delete, Package::package_id()} |
-        {package, get, Package::package_id()} |
-        {package, set_metadata, Package::package_id(), attr_list()} |
-        {package, blocksize, Package::package_id(), pos_integer()} |
-        {package, compression, Package::package_id(), binary()} |
-        {package, cpu_cap, Package::package_id(), pos_integer()} |
-        {package, cpu_shares, Package::package_id(), pos_integer()} |
-        {package, max_swap, Package::package_id(), pos_integer()} |
-        {package, name, Package::package_id(), binary()} |
-        {package, quota, Package::package_id(), pos_integer()} |
-        {package, ram, Package::package_id(), pos_integer()} |
-        {package, uuid, Package::package_id(), binary()} |
-        {package, zfs_io_priority, Package::package_id(), pos_integer()} |
-        {package, remove_requirement, Package::package_id(), term()} |
-        {package, add_requirement, Package::package_id(), term()} |
+        {package, delete, package_id()} |
+        {package, get, package_id()} |
+        {package, set_metadata, package_id(), attr_list()} |
+        {package, blocksize, package_id(), pos_integer()} |
+        {package, compression, package_id(), binary()} |
+        {package, cpu_cap, package_id(), pos_integer()} |
+        {package, cpu_shares, package_id(), pos_integer()} |
+        {package, max_swap, package_id(), pos_integer()} |
+        {package, name, package_id(), binary()} |
+        {package, quota, package_id(), pos_integer()} |
+        {package, ram, package_id(), pos_integer()} |
+        {package, uuid, package_id(), binary()} |
+        {package, zfs_io_priority, package_id(), pos_integer()} |
+        {package, remove_requirement, package_id(), term()} |
+        {package, add_requirement, package_id(), term()} |
         {package, list} |
         {package, list, Requirements::[matcher()], Full::boolean()}.
 
@@ -450,8 +451,6 @@
         {grouping, add, GroupingName::binary(), Type::grouping_type()} |
         {grouping, delete, Grouping::grouping_id()} |
         {grouping, get, Grouping::grouping_id()} |
-        {grouping, metadata, set, Grouping::grouping_id(), Attribute::keys(), Value::value() | delete} |
-        {grouping, metadata, set, Grouping::grouping_id(), Attributes::attr_list()} |
         {grouping, element, add | remove, Grouping::grouping_id(), Element::grouping_id()| vm_id()} |
         {grouping, grouping, add | remove, Grouping::grouping_id(), Parent::grouping_id()} |
         {grouping, list} |
@@ -473,8 +472,6 @@
         {user, list, Realm::realm()} |
         {user, list, Realm::realm(), Requirements::[matcher()], Full::boolean()} |
         {user, get, Realm::realm(), User::user_token_id()} |
-        {user, set, Realm::realm(), User::user_id(), Attribute::keys(), Value::value() | delete} |
-        {user, set, Realm::realm(), User::user_id(), Attributes::attr_list()} |
         {user, lookup, Realm::realm(), UserName::binary()} |
         {user, cache, Realm::realm(), User::user_token_id()} |
         {user, add, Realm::realm(), UserName::binary()} |
@@ -506,8 +503,6 @@
         {role, list, Realm::realm()} |
         {role, list, Realm::realm(), Requirements::[matcher()], Full::boolean()} |
         {role, get, Realm::realm(), Role::role_id()} |
-        {role, set, Realm::realm(), Role::role_id(), Attribute::keys(), Value::value() | delete} |
-        {role, set, Realm::realm(), Role::role_id(), Attributes::attr_list()} |
         {role, add, Realm::realm(), RoleName::binary()} |
         {role, delete, Realm::realm(), Role::role_id()} |
         {role, grant, Realm::realm(), Role::role_id(), Permission::permission()} |
@@ -518,8 +513,6 @@
         {org, list, Realm::realm()} |
         {org, list, Realm::realm(), Requirements::[matcher()], Full::boolean()} |
         {org, get, Realm::realm(), Org::org_id()} |
-        {org, set, Realm::realm(), Org::org_id(), Attribute::keys(), Value::value() | delete} |
-        {org, set, Realm::realm(), Org::org_id(), Attributes::attr_list()} |
         {org, add, Realm::realm(), OrgName::binary()} |
         {org, delete, Realm::realm(), Org::org_id()} |
         {org, delete, Realm::realm(), Org::org_id()} |
