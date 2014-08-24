@@ -1,7 +1,6 @@
 -module(fifo).
 
 -export_type([attr_list/0,
-              attr_list/0,
               key/0,
               keys/0,
               object/0,
