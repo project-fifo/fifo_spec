@@ -1,6 +1,6 @@
 -module(fifo).
 
--export_type([config_list/0,
+-export_type([attr_list/0,
               attr_list/0,
               key/0,
               keys/0,
@@ -186,9 +186,6 @@
         {matcher_type(), element_comparer(), Key::binary(), term()} |
         {matcher_type(), permission_comparer(), Key::permission_key(), [permission()]}.
 
--type config_list() :: [{Key::binary(),
-                         Value::value()}].
-
 -type attr_list() :: [{Key::keys(),
                        Value::value()}].
 
@@ -348,11 +345,11 @@
         {hypervisor, get, Hypervisor::hypervisor()} |
         {hypervisor, service, Hypervisor::hypervisor(),
          Action::enable|disable|clear, Service::binary()} |
-        {hypervisor, set_resource, Hypervisor::hypervisor(), config_list()} |
-        {hypervisor, set_characteristic, Hypervisor::hypervisor(), config_list()} |
-        {hypervisor, set_metadata, Hypervisor::hypervisor(), config_list()} |
-        {hypervisor, set_pool, Hypervisor::hypervisor(), config_list()} |
-        {hypervisor, set_service, Hypervisor::hypervisor(), config_list()} |
+        {hypervisor, set_resource, Hypervisor::hypervisor(), attr_list()} |
+        {hypervisor, set_characteristic, Hypervisor::hypervisor(), attr_list()} |
+        {hypervisor, set_metadata, Hypervisor::hypervisor(), attr_list()} |
+        {hypervisor, set_pool, Hypervisor::hypervisor(), attr_list()} |
+        {hypervisor, set_service, Hypervisor::hypervisor(), attr_list()} |
         {hypervisor, alias, Hypervisor::hypervisor(), binary()} |
         {hypervisor, etherstubs, Hypervisor::hypervisor(), list()} |
         {hypervisor, host, Hypervisor::hypervisor(), binary()} |
@@ -433,8 +430,19 @@
         {package, create, PackageName::binary()} |
         {package, delete, Package::package_id()} |
         {package, get, Package::package_id()} |
-        {package, set, Package::package_id(), Attribute::keys(), Value::value() | delete} |
-        {package, set, Package::package_id(), Attributes::attr_list()} |
+        {package, set_metadata, Package::package_id(), attr_list()} |
+        {package, blocksize, Package::package_id(), pos_integer()} |
+        {package, compression, Package::package_id(), binary()}
+        {package, cpu_cap, Package::package_id(), pos_integer()} |
+        {package, cpu_shares, Package::package_id(), pos_integer()} |
+        {package, max_swap, Package::package_id(), pos_integer()} |
+        {package, name, Package::package_id(), binary()}
+        {package, quota, Package::package_id(), pos_integer()} |
+        {package, ram, Package::package_id(), pos_integer()} |
+        {package, uuid, Package::package_id(), binary()}
+        {package, zfs_io_priority, Package::package_id(), pos_integer()} |
+        {package, remove_requirement, Package::package_id(), term()} |
+        {package, add_requirement, Package::package_id(), term()} |
         {package, list} |
         {package, list, Requirements::[matcher()], Full::boolean()}.
 
