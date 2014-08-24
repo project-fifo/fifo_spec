@@ -269,16 +269,7 @@
 -type sniffle_message() ::
         ping |
         version |
-        {cloud, status} |
-        sniffle_dataset_message() |
-        sniffle_dtrace_message() |
-        sniffle_grouping_message() |
-        sniffle_hypervisor_messages() |
-        sniffle_image_message() |
-        sniffle_iprange_message() |
-        sniffle_network_message() |
-        sniffle_package_message() |
-        sniffle_vm_messages().
+        {cloud, status}.
 
 -type sniffle_dtrace_message() ::
         {dtrace, add, Name::binary(), Script::string()} |
@@ -448,11 +439,12 @@
 
 
 -type sniffle_grouping_message() ::
-        {grouping, add, GroupingName::binary(), Type::grouping_type()} |
-        {grouping, delete, Grouping::grouping_id()} |
-        {grouping, get, Grouping::grouping_id()} |
-        {grouping, element, add | remove, Grouping::grouping_id(), Element::grouping_id()| vm_id()} |
-        {grouping, grouping, add | remove, Grouping::grouping_id(), Parent::grouping_id()} |
+        {grouping, add, GroupingName::binary(), grouping_type()} |
+        {grouping, delete, grouping_id()} |
+        {grouping, get, grouping_id()} |
+        {grouping, element, add | remove, grouping_id(), Element::grouping_id()| vm_id()} |
+        {grouping, grouping, add | remove, grouping_id(), Parent::grouping_id()} |
+        {grouping, metadata, set, grouping_id(), attr_list()} |
         {grouping, list} |
         {grouping, list, Requirements::[matcher()], Full::boolean()}.
 
