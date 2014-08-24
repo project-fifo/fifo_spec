@@ -436,10 +436,10 @@
         {package, cpu_cap, Package::package_id(), pos_integer()} |
         {package, cpu_shares, Package::package_id(), pos_integer()} |
         {package, max_swap, Package::package_id(), pos_integer()} |
-        {package, name, Package::package_id(), binary()}
+        {package, name, Package::package_id(), binary()} |
         {package, quota, Package::package_id(), pos_integer()} |
         {package, ram, Package::package_id(), pos_integer()} |
-        {package, uuid, Package::package_id(), binary()}
+        {package, uuid, Package::package_id(), binary()} |
         {package, zfs_io_priority, Package::package_id(), pos_integer()} |
         {package, remove_requirement, Package::package_id(), term()} |
         {package, add_requirement, Package::package_id(), term()} |
