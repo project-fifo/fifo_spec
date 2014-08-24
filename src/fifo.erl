@@ -432,7 +432,7 @@
         {package, get, Package::package_id()} |
         {package, set_metadata, Package::package_id(), attr_list()} |
         {package, blocksize, Package::package_id(), pos_integer()} |
-        {package, compression, Package::package_id(), binary()}
+        {package, compression, Package::package_id(), binary()} |
         {package, cpu_cap, Package::package_id(), pos_integer()} |
         {package, cpu_shares, Package::package_id(), pos_integer()} |
         {package, max_swap, Package::package_id(), pos_integer()} |
