@@ -316,8 +316,16 @@
         {vm, reboot, Vm::vm_id()} |
         {vm, stop, force, Vm::vm_id()} |
         {vm, reboot, force, Vm::vm_id()} |
-        {vm, list} |
+        {vm, owner, vm_id(), binary()} |
+        {vm, state, vm_id(), binary()} |
+        {vm, set_service, vm_id(), attr_list()} |
+        {vm, set_backup, vm_id(), attr_list()} |
+        {vm, set_snapshot, vm_id(), attr_list()} |
+        {vm, set_metadata, vm_id(), attr_list()} |
+        {vm, set_config, vm_id(), attr_list()} |
+        {vm, set_info, vm_id(), attr_list()} |
         {vm, list, Requirements::[matcher()], Full::boolean()} |
+        {vm, list} |
         {vm, nic, add, Vm::vm_id(), IPRange::iprange_id()} |
         {vm, nic, remove ,Vm::vm_id(), IPRange::iprange_id()} |
         {vm, nic, primary ,Vm::vm_id(), MAC::binary()}.
