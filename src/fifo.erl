@@ -346,10 +346,23 @@
          Port::inet:port_number()} |
         {hypervisor, unregister, Hypervisor::hypervisor()} |
         {hypervisor, get, Hypervisor::hypervisor()} |
-        {hypervisor, set, Hypervisor::hypervisor(), Resource::binary(), Value::value() | delete} |
-        {hypervisor, set, Hypervisor::hypervisor(), Resources::config_list()} |
         {hypervisor, service, Hypervisor::hypervisor(),
          Action::enable|disable|clear, Service::binary()} |
+        {hypervisor, set_resource, Hypervisor::hypervisor(), config_list()} |
+        {hypervisor, set_characteristic, Hypervisor::hypervisor(), config_list()} |
+        {hypervisor, set_metadata, Hypervisor::hypervisor(), config_list()} |
+        {hypervisor, set_pool, Hypervisor::hypervisor(), config_list()} |
+        {hypervisor, set_service, Hypervisor::hypervisor(), config_list()} |
+        {hypervisor, alias, Hypervisor::hypervisor(), binary()} |
+        {hypervisor, etherstubs, Hypervisor::hypervisor(), list()} |
+        {hypervisor, host, Hypervisor::hypervisor(), binary()} |
+        {hypervisor, networks, Hypervisor::hypervisor(), list()} |
+        {hypervisor, path, Hypervisor::hypervisor(), list()} |
+        {hypervisor, port, Hypervisor::hypervisor(), inet:port_number()} |
+        {hypervisor, sysinfo, Hypervisor::hypervisor(), list()} |
+        {hypervisor, uuid, Hypervisor::hypervisor(), binary()} |
+        {hypervisor, version, Hypervisor::hypervisor(), binary()} |
+        {hypervisor, virtualisation, Hypervisor::hypervisor(), list()} |
         {hypervisor, list} |
         {hypervisor, list, Requirements::[matcher()], Full::boolean()}.
 
