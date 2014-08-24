@@ -323,28 +323,28 @@
         {vm, nic, primary ,Vm::vm_id(), MAC::binary()}.
 
 -type sniffle_hypervisor_message() ::
-        {hypervisor, register, Hypervisor::hypervisor(),
+        {hypervisor, register, Hypervisor::hypervisor_id(),
          Host::binary(),
          Port::inet:port_number()} |
-        {hypervisor, unregister, Hypervisor::hypervisor()} |
-        {hypervisor, get, Hypervisor::hypervisor()} |
-        {hypervisor, service, Hypervisor::hypervisor(),
+        {hypervisor, unregister, Hypervisor::hypervisor_id()} |
+        {hypervisor, get, Hypervisor::hypervisor_id()} |
+        {hypervisor, service, Hypervisor::hypervisor_id(),
          Action::enable|disable|clear, Service::binary()} |
-        {hypervisor, set_resource, Hypervisor::hypervisor(), attr_list()} |
-        {hypervisor, set_characteristic, Hypervisor::hypervisor(), attr_list()} |
-        {hypervisor, set_metadata, Hypervisor::hypervisor(), attr_list()} |
-        {hypervisor, set_pool, Hypervisor::hypervisor(), attr_list()} |
-        {hypervisor, set_service, Hypervisor::hypervisor(), attr_list()} |
-        {hypervisor, alias, Hypervisor::hypervisor(), binary()} |
-        {hypervisor, etherstubs, Hypervisor::hypervisor(), list()} |
-        {hypervisor, host, Hypervisor::hypervisor(), binary()} |
-        {hypervisor, networks, Hypervisor::hypervisor(), list()} |
-        {hypervisor, path, Hypervisor::hypervisor(), list()} |
-        {hypervisor, port, Hypervisor::hypervisor(), inet:port_number()} |
-        {hypervisor, sysinfo, Hypervisor::hypervisor(), list()} |
-        {hypervisor, uuid, Hypervisor::hypervisor(), binary()} |
-        {hypervisor, version, Hypervisor::hypervisor(), binary()} |
-        {hypervisor, virtualisation, Hypervisor::hypervisor(), list()} |
+        {hypervisor, set_resource, Hypervisor::hypervisor_id(), attr_list()} |
+        {hypervisor, set_characteristic, Hypervisor::hypervisor_id(), attr_list()} |
+        {hypervisor, set_metadata, Hypervisor::hypervisor_id(), attr_list()} |
+        {hypervisor, set_pool, Hypervisor::hypervisor_id(), attr_list()} |
+        {hypervisor, set_service, Hypervisor::hypervisor_id(), attr_list()} |
+        {hypervisor, alias, Hypervisor::hypervisor_id(), binary()} |
+        {hypervisor, etherstubs, Hypervisor::hypervisor_id(), list()} |
+        {hypervisor, host, Hypervisor::hypervisor_id(), binary()} |
+        {hypervisor, networks, Hypervisor::hypervisor_id(), list()} |
+        {hypervisor, path, Hypervisor::hypervisor_id(), list()} |
+        {hypervisor, port, Hypervisor::hypervisor_id(), inet:port_number()} |
+        {hypervisor, sysinfo, Hypervisor::hypervisor_id(), list()} |
+        {hypervisor, uuid, Hypervisor::hypervisor_id(), binary()} |
+        {hypervisor, version, Hypervisor::hypervisor_id(), binary()} |
+        {hypervisor, virtualisation, Hypervisor::hypervisor_id(), list()} |
         {hypervisor, list} |
         {hypervisor, list, Requirements::[matcher()], Full::boolean()}.
 
