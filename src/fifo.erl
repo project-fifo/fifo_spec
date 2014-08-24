@@ -62,12 +62,12 @@
               sniffle_dataset_message/0,
               sniffle_dtrace_message/0,
               sniffle_grouping_message/0,
-              sniffle_hypervisor_messages/0,
+              sniffle_hypervisor_message/0,
               sniffle_image_message/0,
               sniffle_iprange_message/0,
               sniffle_network_message/0,
               sniffle_package_message/0,
-              sniffle_vm_messages/0,
+              sniffle_vm_message/0,
               howl_message/0,
               chunter_message/0,
               snarl_message/0,
@@ -284,7 +284,7 @@
         {dtrace, set_config, ID::dtrace_id(), [{jsxd:key(), jsxd:value()}]} |
         {dtrace, run, ID::dtrace_id(), Servers::[hypervisor()]}.
 
--type sniffle_vm_messages() ::
+-type sniffle_vm_message() ::
         {vm, store, binary()} |
         {vm, backup, incremental, Vm::vm_id(), Parent::uuid(), BackupID::uuid(),
          Opts::[backup_opt()]} |
@@ -322,7 +322,7 @@
         {vm, nic, remove ,Vm::vm_id(), IPRange::iprange_id()} |
         {vm, nic, primary ,Vm::vm_id(), MAC::binary()}.
 
--type sniffle_hypervisor_messages() ::
+-type sniffle_hypervisor_message() ::
         {hypervisor, register, Hypervisor::hypervisor(),
          Host::binary(),
          Port::inet:port_number()} |
