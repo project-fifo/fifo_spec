@@ -186,7 +186,7 @@
         {matcher_type(), permission_comparer(), Key::permission_key(), [permission()]}.
 
 -type attr_list() :: [{Key::keys(),
-                       Value::value()}].
+                       Value::value() | delete}].
 
 -type vm_config() :: object().
 
