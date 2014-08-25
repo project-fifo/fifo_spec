@@ -471,9 +471,11 @@
 -type snarl_user_message() ::
         {user, list, Realm::realm()} |
         {user, list, Realm::realm(), Requirements::[matcher()], Full::boolean()} |
-        {user, get, Realm::realm(), User::user_token_id()} |
+        {user, get, Realm::realm(), User::user_id()} |
+        {user, get, Realm::realm(), User::token()} |
         {user, lookup, Realm::realm(), UserName::binary()} |
-        {user, cache, Realm::realm(), User::user_token_id()} |
+        {user, cache, Realm::realm(), User::token()} |
+        {user, cache, Realm::realm(), User::user_id()} |
         {user, add, Realm::realm(), UserName::binary()} |
         {user, add, Realm::realm(), Creator::user_id(), UserName::binary()} |
         {user, delete, Realm::realm(), User::user_id()} |
