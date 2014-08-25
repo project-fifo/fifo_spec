@@ -280,8 +280,8 @@
         {dtrace, name, ID::dtrace_id(), binary()} |
         {dtrace, uuid, ID::dtrace_id(), binary()} |
         {dtrace, script, ID::dtrace_id(), string()} |
-        {dtrace, set_metadata, ID::dtrace_id(), [{jsxd:key(), jsxd:value()}]} |
-        {dtrace, set_config, ID::dtrace_id(), [{jsxd:key(), jsxd:value()}]} |
+        {dtrace, set_metadata, ID::dtrace_id(), attr_list()} |
+        {dtrace, set_config, ID::dtrace_id(), attr_list()} |
         {dtrace, run, ID::dtrace_id(), Servers::[hypervisor()]}.
 
 -type sniffle_vm_message() ::
@@ -375,7 +375,7 @@
         {dataset, type, Dataset::dataset_id(), kvm | zone} |
         {dataset, users, Dataset::dataset_id(), list()} |
         {dataset, version, Dataset::dataset_id(), binary()} |
-        {dataset, set_metadata, Dataset::dataset_id(), [{jsxd:key(), jsxd:value()}]} |
+        {dataset, set_metadata, Dataset::dataset_id(), attr_list()} |
         {dataset, list, Requirements::[matcher()], Full::boolean()}.
 
 -type sniffle_image_message() ::
