@@ -305,7 +305,7 @@
         {vm, snapshot, commit_rollback, Vm::vm_id(), UUID::uuid()} |
         {vm, snapshot, promote, Vm::vm_id(),
          SnapUUID::uuid(), Dataset::config()} |
-        {vm, create, ac_user(), Package::binary(), Dataset::binary(), Config::config()} |
+        {vm, create, Package::binary(), Dataset::binary(), Config::config()} |
         {vm, dry_run, Package::binary(), Dataset::binary(), Config::config()} |
         {vm, update, ac_user(), Vm::vm_id(),
          Package::package_id() | undefined, Config::config()} |
