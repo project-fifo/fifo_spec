@@ -265,6 +265,7 @@
 %%%===================================================================
 %%%  Sniffle
 %%%===================================================================
+-type ac_user()::user_id() | undefined.
 
 -type sniffle_message() ::
         ping |
@@ -285,12 +286,12 @@
         {dtrace, run, ID::dtrace_id(), Servers::[hypervisor()]}.
 
 -type sniffle_vm_message() ::
-        {vm, store, binary()} |
+        {vm, store, ac_user(), binary()} |
         {vm, backup, incremental, Vm::vm_id(), Parent::uuid(), BackupID::uuid(),
          Opts::[backup_opt()]} |
         {vm, backup, full, Vm::vm_id(), BackupID::uuid(), Opts::[backup_opt()]} |
         {vm, backup, restore, Vm::vm_id(), BackupID::uuid()} |
-        {vm, backup, restore, Vm::vm_id(), BackupID::uuid(), Opts::[backup_opt()]} |
+        {vm, backup, restore, ac_user(), Vm::vm_id(), BackupID::uuid(), Opts::[backup_opt()]} |
         {vm, backup, delete, Vm::vm_id(), BackupID::uuid(),
          Where::hypervisor|cloud} |
         {vm, service, enable, Vm::vm_id(), Service::binary()} |
@@ -304,19 +305,19 @@
         {vm, snapshot, commit_rollback, Vm::vm_id(), UUID::uuid()} |
         {vm, snapshot, promote, Vm::vm_id(),
          SnapUUID::uuid(), Dataset::config()} |
-        {vm, create, Package::binary(), Dataset::binary(), Config::config()} |
+        {vm, create, ac_user(), Package::binary(), Dataset::binary(), Config::config()} |
         {vm, dry_run, Package::binary(), Dataset::binary(), Config::config()} |
-        {vm, update, Vm::vm_id(),
+        {vm, update, ac_user(), Vm::vm_id(),
          Package::package_id() | undefined, Config::config()} |
         {vm, unregister, Vm::vm_id()} |
         {vm, get, Vm::vm_id()} |
         {vm, start, Vm::vm_id()} |
-        {vm, delete, Vm::vm_id()} |
+        {vm, delete, ac_user(), Vm::vm_id()} |
         {vm, stop, Vm::vm_id()} |
         {vm, reboot, Vm::vm_id()} |
         {vm, stop, force, Vm::vm_id()} |
         {vm, reboot, force, Vm::vm_id()} |
-        {vm, owner, vm_id(), binary()} |
+        {vm, owner, ac_user(), vm_id(), binary()} |
         {vm, state, vm_id(), binary()} |
         {vm, set_service, vm_id(), attr_list()} |
         {vm, set_backup, vm_id(), attr_list()} |
@@ -518,7 +519,10 @@
         {org, set_metadata, realm(), org_id(), Attrs::attr_list()} |
         {org, trigger, add, realm(), org_id(), Trigger::trigger()} |
         {org, trigger, remove, realm(), org_id(), Trigger::trigger()} |
-        {org, trigger, execute, realm(), org_id(), Trigger::trigger(), Payload::term()}.
+        {org, trigger, execute, realm(), org_id(), Trigger::trigger(),
+         Payload::term()} |
+        {org, resource_action, realm(), org_id(), Resource::binary(),
+         Timestamp::pos_integer(), Action::atom(), Opts::proplists:proplist()}.
 
 -type write_fsm_reply() ::
         not_found | ok | {error, timeout} | {ok, term()}.
