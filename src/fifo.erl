@@ -463,7 +463,7 @@
 
 -type snarl_message() ::
         version |
-        {cloud, status, Realm::realm()} |
+        {cloud, status} |
         {token, delete, Realm::realm(), Token::token()} |
         {user, auth, Realm::realm(), UserName::binary(), Pass::binary()} |
         {user, auth, Realm::realm(), UserName::binary(), Pass::binary(), basic | binary()} |
