@@ -454,6 +454,7 @@
         {grouping, element, add | remove, grouping_id(), Element::grouping_id()| vm_id()} |
         {grouping, grouping, add | remove, grouping_id(), Parent::grouping_id()} |
         {grouping, metadata, set, grouping_id(), attr_list()} |
+        {grouping, config, set, grouping_id(), attr_list()} |
         {grouping, list} |
         {grouping, list, Requirements::[matcher()], Full::boolean()}.
 
