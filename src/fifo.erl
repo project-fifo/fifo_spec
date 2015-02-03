@@ -63,7 +63,6 @@
               sniffle_dtrace_message/0,
               sniffle_grouping_message/0,
               sniffle_hypervisor_message/0,
-              sniffle_image_message/0,
               sniffle_iprange_message/0,
               sniffle_network_message/0,
               sniffle_package_message/0,
@@ -270,6 +269,7 @@
 -type sniffle_message() ::
         ping |
         version |
+        {s3, Type :: atom()} |
         {cloud, status}.
 
 -type sniffle_dtrace_message() ::
@@ -378,15 +378,6 @@
         {dataset, version, Dataset::dataset_id(), binary()} |
         {dataset, set_metadata, Dataset::dataset_id(), attr_list()} |
         {dataset, list, Requirements::[matcher()], Full::boolean()}.
-
--type sniffle_image_message() ::
-        {img, create, Img::dataset_id(), Idx::integer()|done,
-         Data::binary(), Acc::term() | undefined} |
-        {img, delete, Img::dataset_id()} |
-        {img, delete, Img::dataset_id(), Idx::integer()} |
-        {img, get, Img::dataset_id(), Idx::integer()} |
-        {img, list} |
-        {img, list, Img::dataset_id()}.
 
 -type sniffle_network_message() ::
         {network, create, binary()} |
