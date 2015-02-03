@@ -461,6 +461,7 @@
         {cloud, status} |
         {token, delete, Realm::realm(), Token::token()} |
         {user, auth, Realm::realm(), UserName::binary(), Pass::binary()} |
+        {user, token, Realm::realm(), user_id()} |
         {user, auth, Realm::realm(), UserName::binary(), Pass::binary(), basic | binary()} |
         {user, allowed, Realm::realm(), User::user_token_id(), Permission::permission()}.
 
