@@ -297,6 +297,8 @@
         {vm, service, enable, Vm::vm_id(), Service::binary()} |
         {vm, service, disable, Vm::vm_id(), Service::binary()} |
         {vm, service, clear, Vm::vm_id(), Service::binary()} |
+        {vm, service, refresh, Vm::vm_id(), Service::binary()} |
+        {vm, service, restart, Vm::vm_id(), Service::binary()} |
         {vm, log, Vm::vm_id(), Log::term()} |
         {vm, register, Vm::vm_id(), Hypervisor::binary()} |
         {vm, snapshot, Vm::vm_id(), Comment::binary()} |
@@ -338,7 +340,7 @@
         {hypervisor, unregister, Hypervisor::hypervisor_id()} |
         {hypervisor, get, Hypervisor::hypervisor_id()} |
         {hypervisor, service, Hypervisor::hypervisor_id(),
-         Action::enable|disable|clear, Service::binary()} |
+         Action::enable|disable|clear|refresh|restart, Service::binary()} |
         {hypervisor, set_resource, Hypervisor::hypervisor_id(), attr_list()} |
         {hypervisor, set_characteristic, Hypervisor::hypervisor_id(), attr_list()} |
         {hypervisor, set_metadata, Hypervisor::hypervisor_id(), attr_list()} |
