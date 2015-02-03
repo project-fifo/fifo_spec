@@ -249,7 +249,8 @@
         {machines, backup, delete, UUID::vm_id(), BackupID::uuid()} |
         {machines, service, enable | disable | clear | restart | refresh,
          UUID::vm_id(),  Service::uuid()} |
-        {service, enable | disable | clear, Service::uuid()} |
+        {service, enable | disable | clear | refresh | restart,
+         Service :: uuid()} |
         {machines, create,
          UUID::vm_id(),
          PSpec::package(),
