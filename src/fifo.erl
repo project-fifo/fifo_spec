@@ -247,7 +247,7 @@
         {machines, backup, restore, UUID::vm_id(), BackupID::uuid(),
          Opts::[backup_opt()]} |
         {machines, backup, delete, UUID::vm_id(), BackupID::uuid()} |
-        {machines, service, enable | disable | clear,
+        {machines, service, enable | disable | clear | restart | refresh,
          UUID::vm_id(),  Service::uuid()} |
         {service, enable | disable | clear, Service::uuid()} |
         {machines, create,
