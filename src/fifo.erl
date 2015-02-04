@@ -13,7 +13,8 @@
               value/0,
               matcher/0,
               uuid/0,
-              obj/0]).
+              obj/0,
+              firewall_rule/0]).
 
 -export_type([
               dataset/0,
@@ -528,3 +529,25 @@
 
 -type coverage_fsm_reply() ::
         not_found | {error, timeout} | {ok, term()}.
+
+-type fw_targets() ::
+        {vm, UUID :: ooc :vm_id()} |
+        {ip, IP :: integer()} |
+        {subnet, Base :: integer(), Mask :: integer()} |
+        {tag, Tag :: binary(), Val :: binary() | integer()} |
+        all.
+
+-type icmp_type() ::
+        echo.
+
+-type icmp_code() ::
+        integer().
+
+-type fw_action() ::
+        allow |
+        block.
+
+-type firewall_rule() ::
+        {fw_action(), [fw_targets()], [fw_targets()], tcp | udp, [integer()]} |
+        {fw_action(), [fw_targets()], [fw_targets()], icmp,
+         [icmp_type() | icmp_code()]}.
