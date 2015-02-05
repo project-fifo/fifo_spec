@@ -14,7 +14,8 @@
               matcher/0,
               uuid/0,
               obj/0,
-              firewall_rule/0]).
+              firewall_rule/0,
+              smartos_fw_rule/0]).
 
 -export_type([
               dataset/0,
@@ -530,24 +531,48 @@
 -type coverage_fsm_reply() ::
         not_found | {error, timeout} | {ok, term()}.
 
--type fw_targets() ::
-        {vm, UUID :: ooc :vm_id()} |
+-type smartos_fw_targets() ::
+        {vm, UUID :: vm_id() | all} |
         {ip, IP :: integer()} |
         {subnet, Base :: integer(), Mask :: integer()} |
         {tag, Tag :: binary(), Val :: binary() | integer()} |
-        all.
+        {tag, Tag :: binary()} |
+        any.
 
 -type icmp_type() ::
-        echo.
-
--type icmp_code() ::
-        integer().
+        {icmp, Type :: non_neg_integer()} |
+        {icmp, Type :: non_neg_integer(), Code :: non_neg_integer()}.
 
 -type fw_action() ::
         allow |
         block.
 
+-type smartos_fw_rule() ::
+        {fw_action(), [smartos_fw_targets()], [smartos_fw_targets()],
+         tcp | udp, [integer()]} |
+        {fw_action(), [smartos_fw_targets()], [smartos_fw_targets()],
+         icmp, [icmp_type()]}.
+
+-type fw_direction() ::
+        inbound |
+        outbound.
+
+-type fw_target() ::
+        all |
+        {vm, UUID :: vm_id()} |
+        {cluster, UUID :: grouping_id()} |
+        {stack, UUID :: grouping_id()} |
+        {network, UUID :: network_id()}.
+
+-type fw_filter() ::
+        {tcp | udp, [integer()]} |
+        {icmp, [icmp_type()]}.
+
+-type fw_iface() ::
+        {nic, Interface :: binary()} |
+        {network, UUID :: network_id()} |
+        all.
+
 -type firewall_rule() ::
-        {fw_action(), [fw_targets()], [fw_targets()], tcp | udp, [integer()]} |
-        {fw_action(), [fw_targets()], [fw_targets()], icmp,
-         [icmp_type() | icmp_code()]}.
+        {fw_action(), fw_direction(), fw_target(), fw_filter()} |
+        {fw_action(), fw_iface(), fw_direction(), fw_target(), fw_filter()}.
