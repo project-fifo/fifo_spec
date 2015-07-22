@@ -559,6 +559,8 @@
 
 -type fw_target() ::
         all |
+        {ip, IP :: pos_integer()} |
+        {subnet, Network :: pos_integer(), Mask ::integer()} |
         {vm, UUID :: vm_id()} |
         {cluster, UUID :: grouping_id()} |
         {stack, UUID :: grouping_id()} |
