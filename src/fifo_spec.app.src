@@ -1,11 +1,14 @@
 {application, fifo_spec,
  [
-  {description, "Chunter interface library."},
+  {description, "Specs for FiFo APIs"},
   {vsn, "0.1.17"},
   {registered, []},
   {applications, [
                   kernel,
                   stdlib
                  ]},
-  {env, []}
+  {env, []},
+  {contributors, ["Heinz N. Gies"]},
+  {licenses, ["CDDL"]},
+  {links, [{"Github", "https://github.com/project-fifo/fifo_spec"}]}
  ]}.
