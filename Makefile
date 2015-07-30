@@ -1,3 +1,3 @@
 .PHONY: all
 all:
-	./rebar compile
+	./rebar3 compile
