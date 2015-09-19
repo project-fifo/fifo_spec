@@ -1,6 +1,6 @@
 [{<<"fifo_dt">>,
   {git,"https://github.com/project-fifo/fifo_dt.git",
-       {ref,"d099f504766d4f2d42d1e79aeb1e48c059fd2ede"}},
+       {ref,"278679069b23ee5a2ff3b08cd6c0a781619b35a9"}},
   0},
  {<<"goldrush">>,{pkg,<<"goldrush">>,<<"0.1.6">>},2},
  {<<"jsx">>,{pkg,<<"jsx">>,<<"1.4.5">>},1},
