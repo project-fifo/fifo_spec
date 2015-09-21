@@ -38,6 +38,7 @@
 
 -export_type([user/0,
               user_id/0,
+              client_id/0,
               role/0,
               role_id/0,
               org/0,
@@ -71,7 +72,9 @@
               snarl_message/0,
               snarl_user_message/0,
               snarl_role_message/0,
-              snarl_org_message/0
+              snarl_org_message/0,
+              snarl_acc_message/0,
+              snarl_oauth_message/0
              ]).
 
 
@@ -126,6 +129,7 @@
 -type role_id() :: uuid().
 -type user() :: ft_user:user().
 -type user_id() :: uuid().
+-type client_id() :: uuid().
 
 -type oauth_token_type() :: access_codes | access_tokens | refresh_tokens.
 -type token() :: binary() | {oauth_token_type(), binary()}.
@@ -501,6 +505,44 @@
          Payload::term()} |
         {org, resource_action, realm(), org_id(), Resource::binary(),
          Timestamp::pos_integer(), Action::atom(), Opts::proplists:proplist()}.
+
+-type acc_action() :: create | update | destroy.
+
+-type snarl_acc_message() ::
+        {accounting, acc_action(),
+         realm(), org_id(), uuid(), pos_integer(), term()} |
+        {accounting, get, realm(), org_id()} |
+        {accounting, get, realm(), org_id(), uuid()} |
+        {accounting, get, realm(), org_id(),
+         Start :: pos_integer(), End :: pos_integer()}.
+
+-type scope() :: [binary()].
+-type uri() :: binary().
+-type snarl_oauth_message() ::
+        {oauth2, scope, realm()} |
+        {oauth2, scope, realm(), scope()} |
+        {oauth2, authorize_password,
+         realm(), user_id(), scope()} |
+        {oauth2, authorize_password,
+         realm(), user_id(), client_id(), scope()} |
+        {oauth2, authorize_password,
+         realm(), user_id(), client_id(), uri(), scope()} |
+        {oauth2, authorize_client_credentials, realm(), client_id(), scope()} |
+        {oauth2, authorize_code_grant,
+         realm(), client_id(), Code::binary(), uri()} |
+        {oauth2, authorize_code_request,
+         realm(), user_id(), client_id(), uri(), scope()} |
+        {oauth2, issue_code, realm(), Auth::term()} |
+        {oauth2, issue_token, realm(), Auth::term()} |
+        {oauth2, issue_token_and_refresh, realm(), Auth::term()} |
+        {oauth2, verify_access_token, realm(), Token::binary()} |
+        {oauth2, verify_access_code, realm(), AccessCode::binary()} |
+        {oauth2, verify_access_code,
+         realm(), AccessCode::binary(), client_id()} |
+        {oauth2, refresh_access_token,
+         realm(), client_id(), RefreshToken::binary(), scope()}.
+
+
 
 -type write_fsm_reply() ::
         not_found | ok | {error, timeout} | {ok, term()}.
