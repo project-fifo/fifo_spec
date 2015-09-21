@@ -241,7 +241,8 @@
         {machines, update,
          UUID::vm_id(),
          PSpec::package() | undefined,
-         Config::config()}.
+         Config::config()} |
+        {fw, update, UUID::vm_id()}.
 
 %%%===================================================================
 %%%  Sniffle
