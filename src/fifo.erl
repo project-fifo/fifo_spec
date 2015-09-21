@@ -240,7 +240,7 @@
         {machines, delete, UUID::vm_id()} |
         {machines, update,
          UUID::vm_id(),
-         PSpec::package(),
+         PSpec::package() | undefined,
          Config::config()}.
 
 %%%===================================================================
