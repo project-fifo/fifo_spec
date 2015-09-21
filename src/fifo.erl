@@ -44,14 +44,11 @@
               org_id/0,
               user_token_id/0,
               token/0,
+              oauth_token_type/0,
               trigger/0,
               event/0
              ]).
 
--export_type([resource_id/0,
-              reservation/0,
-              resource/0,
-              resource_claim/0]).
 
 -export_type([permission/0,
               comparer/0,
@@ -94,8 +91,6 @@
 
 -type jsxarray()::[value()].
 
--type resource_id() :: uuid().
-
 -type user_token_id() :: user_id() | {token, Token::token()}.
 -type realm() :: binary().
 
@@ -132,29 +127,13 @@
 -type user() :: ft_user:user().
 -type user_id() :: uuid().
 
--type token() :: uuid().
+-type oauth_token_type() :: access_codes | access_tokens | refresh_tokens.
+-type token() :: binary() | {oauth_token_type(), binary()}.
 
 -type event() :: atom().
 
--type resource() ::
-        {resource,
-         Name :: resource_id(),
-         Granted :: number(),
-         Claims :: [resource_claim()],
-         Reservations :: [reservation()]}.
-
--type reservation() ::
-        {Claim :: resource_claim(),
-         Timeout :: integer()}.
-
--type resource_claim() ::
-        {resource_claim,
-         Id :: uuid(),
-         Ammount :: number()}.
-
-
 -type permission() ::
-        [binary() | '_' | '...'].
+        [binary()].
 
 -type number_comparer() ::
         '>=' | '<=' | '>' | '<' | '=:=' | '=/='.
