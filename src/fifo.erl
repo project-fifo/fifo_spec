@@ -46,6 +46,8 @@
               user_token_id/0,
               token/0,
               oauth_token_type/0,
+              scope_list/0,
+              scope_map/0,
               trigger/0,
               event/0
              ]).
@@ -516,22 +518,28 @@
         {accounting, get, realm(), org_id(),
          Start :: pos_integer(), End :: pos_integer()}.
 
--type scope() :: [binary()].
+-type scope_list() :: [binary()].
+-type scope_map() :: #{
+                 name => binary(),
+                 desc => binary(),
+                 default => boolean(),
+                 permissions => list()
+                }.
 -type uri() :: binary().
 -type snarl_oauth_message() ::
         {oauth2, scope, realm()} |
-        {oauth2, scope, realm(), scope()} |
+        {oauth2, scope, realm(), ScopeName ::binary()} |
         {oauth2, authorize_password,
-         realm(), user_id(), scope()} |
+         realm(), user_id(), scope_list()} |
         {oauth2, authorize_password,
-         realm(), user_id(), client_id(), scope()} |
+         realm(), user_id(), client_id(), scope_list()} |
         {oauth2, authorize_password,
-         realm(), user_id(), client_id(), uri(), scope()} |
-        {oauth2, authorize_client_credentials, realm(), client_id(), scope()} |
+         realm(), user_id(), client_id(), uri(), scope_list()} |
+        {oauth2, authorize_client_credentials, realm(), client_id(), scope_list()} |
         {oauth2, authorize_code_grant,
          realm(), client_id(), Code::binary(), uri()} |
         {oauth2, authorize_code_request,
-         realm(), user_id(), client_id(), uri(), scope()} |
+         realm(), user_id(), client_id(), uri(), scope_list()} |
         {oauth2, issue_code, realm(), Auth::term()} |
         {oauth2, issue_token, realm(), Auth::term()} |
         {oauth2, issue_token_and_refresh, realm(), Auth::term()} |
@@ -540,7 +548,7 @@
         {oauth2, verify_access_code,
          realm(), AccessCode::binary(), client_id()} |
         {oauth2, refresh_access_token,
-         realm(), client_id(), RefreshToken::binary(), scope()}.
+         realm(), client_id(), RefreshToken::binary(), scope_list()}.
 
 
 
