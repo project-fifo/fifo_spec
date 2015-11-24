@@ -1,3 +1,4 @@
 .PHONY: all
-all:
-	./rebar3 compile
+all: compile
+
+include fifo.mk

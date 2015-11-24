@@ -169,7 +169,8 @@
         {matcher_type(), number_comparer(), Key::binary(), number()} |
         {matcher_type(), set_comparer(), Key::binary(), [term()]} |
         {matcher_type(), element_comparer(), Key::binary(), term()} |
-        {matcher_type(), permission_comparer(), Key::permission_key(), [permission()]}.
+        {matcher_type(), permission_comparer(), Key::permission_key(),
+         [permission()]}.
 
 -type attr_list() :: [{Key::keys(),
                        Value::value() | delete}].
@@ -278,9 +279,11 @@
         {vm, store, ac_user(), binary()} |
         {vm, backup, incremental, Vm::vm_id(), Parent::uuid(), BackupID::uuid(),
          Opts::[backup_opt()]} |
-        {vm, backup, full, Vm::vm_id(), BackupID::uuid(), Opts::[backup_opt()]} |
+        {vm, backup, full,
+         Vm::vm_id(), BackupID::uuid(), Opts::[backup_opt()]} |
         {vm, backup, restore, Vm::vm_id(), BackupID::uuid()} |
-        {vm, backup, restore, ac_user(), Vm::vm_id(), BackupID::uuid(), Opts::[backup_opt()]} |
+        {vm, backup, restore,
+         ac_user(), Vm::vm_id(), BackupID::uuid(), Opts::[backup_opt()]} |
         {vm, backup, delete, Vm::vm_id(), BackupID::uuid(),
          Where::hypervisor|cloud} |
         {vm, service, enable, Vm::vm_id(), Service::binary()} |
@@ -319,8 +322,8 @@
         {vm, list, Requirements::[matcher()], Full::boolean()} |
         {vm, list} |
         {vm, nic, add, Vm::vm_id(), IPRange::iprange_id()} |
-        {vm, nic, remove ,Vm::vm_id(), IPRange::iprange_id()} |
-        {vm, nic, primary ,Vm::vm_id(), MAC::binary()}.
+        {vm, nic, remove, Vm::vm_id(), IPRange::iprange_id()} |
+        {vm, nic, primary, Vm::vm_id(), MAC::binary()}.
 
 -type sniffle_hypervisor_message() ::
         {hypervisor, register, Hypervisor::hypervisor_id(),
@@ -331,7 +334,8 @@
         {hypervisor, service, Hypervisor::hypervisor_id(),
          Action::enable|disable|clear|refresh|restart, Service::binary()} |
         {hypervisor, set_resource, Hypervisor::hypervisor_id(), attr_list()} |
-        {hypervisor, set_characteristic, Hypervisor::hypervisor_id(), attr_list()} |
+        {hypervisor, set_characteristic,
+         Hypervisor::hypervisor_id(), attr_list()} |
         {hypervisor, set_metadata, Hypervisor::hypervisor_id(), attr_list()} |
         {hypervisor, set_pool, Hypervisor::hypervisor_id(), attr_list()} |
         {hypervisor, set_service, Hypervisor::hypervisor_id(), attr_list()} |
@@ -355,7 +359,8 @@
         {dataset, get, Dataset::dataset_id()} |
         {dataset, list} |
         {dataset, status, Dataset::dataset_id(), binary()} |
-        {dataset, imported, Dataset::dataset_id(), float() | non_neg_integer()} |
+        {dataset, imported,
+         Dataset::dataset_id(), float() | non_neg_integer()} |
         {dataset, description, Dataset::dataset_id(), binary()} |
         {dataset, disk_driver, Dataset::dataset_id(), binary()} |
         {dataset, homepage, Dataset::dataset_id(), binary()} |
@@ -433,8 +438,10 @@
         {grouping, add, GroupingName::binary(), grouping_type()} |
         {grouping, delete, grouping_id()} |
         {grouping, get, grouping_id()} |
-        {grouping, element, add | remove, grouping_id(), Element::grouping_id()| vm_id()} |
-        {grouping, grouping, add | remove, grouping_id(), Parent::grouping_id()} |
+        {grouping, element, add | remove,
+         grouping_id(), Element::grouping_id()| vm_id()} |
+        {grouping, grouping, add | remove,
+         grouping_id(), Parent::grouping_id()} |
         {grouping, metadata, set, grouping_id(), attr_list()} |
         {grouping, config, set, grouping_id(), attr_list()} |
         {grouping, list} |
@@ -450,8 +457,10 @@
         {token, delete, Realm::realm(), Token::token()} |
         {user, auth, Realm::realm(), UserName::binary(), Pass::binary()} |
         {user, token, Realm::realm(), user_id()} |
-        {user, auth, Realm::realm(), UserName::binary(), Pass::binary(), basic | binary()} |
-        {user, allowed, Realm::realm(), User::user_token_id(), Permission::permission()}.
+        {user, auth,
+         Realm::realm(), UserName::binary(), Pass::binary(), basic | binary()} |
+        {user, allowed,
+         Realm::realm(), User::user_token_id(), Permission::permission()}.
 
 -type snarl_user_message() ::
         {user, list, realm()} |
@@ -475,7 +484,7 @@
         {user, keys, revoke, realm(), user_id(), KeyID::binary()} |
         {user, keys, get, realm(), user_id()} |
         {user, yubikeys, add, realm(), user_id(), binary()} |
-        {user, yubikeys, remove, realm(), user_id(),binary()} |
+        {user, yubikeys, remove, realm(), user_id(), binary()} |
         {user, yubikeys, get, realm(), user_id()} |
         {user, set_metadata, realm(), user_id(), Attrs::attr_list()} |
         {user, org, join, realm(), user_id(), Org::org_id()} |
@@ -535,7 +544,8 @@
          realm(), user_id(), client_id(), scope_list()} |
         {oauth2, authorize_password,
          realm(), user_id(), client_id(), uri(), scope_list()} |
-        {oauth2, authorize_client_credentials, realm(), client_id(), scope_list()} |
+        {oauth2, authorize_client_credentials,
+         realm(), client_id(), scope_list()} |
         {oauth2, authorize_code_grant,
          realm(), client_id(), Code::binary(), uri()} |
         {oauth2, authorize_code_request,
