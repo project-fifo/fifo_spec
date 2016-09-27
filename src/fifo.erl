@@ -92,7 +92,7 @@
 
 -type value()::binary()|number()|object()|jsxarray()|null|true|false.
 
--type object()::[{binary(), value()}].
+-type object()::[{binary(), value()}] | #{binary() => value()}.
 
 -type jsxarray()::[value()].
 
