@@ -1,10 +1,10 @@
 {application,fifo_spec,
              [{description,"Specs for FiFo APIs"},
-              {vsn,"0.1.28"},
+              {vsn,"0.1.29"},
               {registered,[]},
               {applications,[kernel,stdlib]},
               {env,[]},
-              {maintainers, ["Heinz N. Gies"]},
+              {maintainers,["Heinz N. Gies"]},
               {licenses,["CDDL"]},
               {links,[{"Github",
                        "https://github.com/project-fifo/fifo_spec"}]}]}.
