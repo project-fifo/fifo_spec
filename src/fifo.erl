@@ -529,11 +529,12 @@
 
 -type scope_list() :: [binary()].
 -type scope_map() :: #{
-                 name => binary(),
+                 scope => binary(),
                  desc => binary(),
                  default => boolean(),
                  permissions => list()
                 }.
+
 -type uri() :: binary().
 -type snarl_oauth_message() ::
         {oauth2, scope, realm()} |
