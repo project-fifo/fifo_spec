@@ -380,6 +380,8 @@
         {network, delete, network_id()} |
         {network, add_iprange, network_id(), iprange_id()} |
         {network, remove_iprange, network_id(), iprange_id()} |
+        {network, add_resolver, network_id(), binary()} |
+        {network, remove_resolver, network_id(), binary()} |
         {network, get, network_id()} |
         {network, uuid, network_id(), binary()} |
         {network, name, network_id(), binary()} |
