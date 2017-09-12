@@ -329,6 +329,7 @@
         {hypervisor, register, Hypervisor::hypervisor_id(),
          Host::binary(),
          Port::inet:port_number()} |
+        {hypervisor, architecture, Hypervisor::hypervisor_id(), arm64 | x86} |
         {hypervisor, unregister, Hypervisor::hypervisor_id()} |
         {hypervisor, get, Hypervisor::hypervisor_id()} |
         {hypervisor, service, Hypervisor::hypervisor_id(),

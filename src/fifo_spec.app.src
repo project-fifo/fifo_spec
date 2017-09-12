@@ -1,6 +1,6 @@
 {application,fifo_spec,
              [{description,"Specs for FiFo APIs"},
-              {vsn,"0.1.32"},
+              {vsn,git},
               {registered,[]},
               {applications,[kernel,stdlib]},
               {env,[]},
